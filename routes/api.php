@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,3 +29,4 @@ Route::post('refresh-token', [AuthController::class, 'refreshToken'])->middlewar
 
 Route::get('me', [UserController::class, 'me'])->middleware('auth:api');
 Route::get('get-categories', [CategoryController::class, 'getCategories']);
+Route::get('get-news', [NewsController::class, 'getNews']);
