@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function getCategories()
     {
-        $categories = Category::all();
+        $categories = Category::query()->orderBy('order', 'ASC')->get();
 
         return response()->json($categories);
     }
