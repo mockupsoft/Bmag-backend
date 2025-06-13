@@ -13,8 +13,8 @@ class NewsService
         $this->newsRepository = $newsRepository;
     }
 
-    public function getNews()
+    public function getNews($categoryId = null)
     {
-        return $this->newsRepository->getNews();
+        return $this->newsRepository->getNews($categoryId);
     }
 }

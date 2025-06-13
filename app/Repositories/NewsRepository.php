@@ -13,8 +13,16 @@ class NewsRepository
         $this->news = $news;
     }
 
-    public function getNews()
+    public function getNews($categoryId)
     {
-        return $this->news->with('category')->where('is_published', true)->latest()->paginate(10);
+        return $this
+            ->news
+            ->with('category')
+            ->when($categoryId,
+                fn ($query) => $query->where('category_id', $categoryId)
+            )
+            ->where('is_published', true)
+            ->latest()
+            ->paginate(10);
     }
 }

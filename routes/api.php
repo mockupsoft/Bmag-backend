@@ -30,3 +30,4 @@ Route::post('refresh-token', [AuthController::class, 'refreshToken'])->middlewar
 Route::get('me', [UserController::class, 'me'])->middleware('auth:api');
 Route::get('get-categories', [CategoryController::class, 'getCategories']);
 Route::get('get-news', [NewsController::class, 'getNews']);
+Route::get('{categoryId}/get-news-for-category', [NewsController::class, 'getNewsForCategory']);

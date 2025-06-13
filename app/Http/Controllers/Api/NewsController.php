@@ -22,4 +22,11 @@ class NewsController extends Controller
         $news = $this->newsService->getNews();
         return new NewsCollection($news);
     }
+
+    public function getNewsForCategory($categoryId)
+    {
+        $newsForCategory = $this->newsService->getNews($categoryId);
+
+        return new NewsCollection($newsForCategory);
+    }
 }
