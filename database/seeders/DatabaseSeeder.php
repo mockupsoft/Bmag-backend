@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         //$role = Role::findByName('editor', 'api');
         //$role->givePermissionTo(['create post', 'edit post']);
 
+        $this->call(PermissionsTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(RoleHasPermissionsTableSeeder::class);
         $this->call(ModelHasRolesTableSeeder::class);
