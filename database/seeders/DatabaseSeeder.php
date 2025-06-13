@@ -15,16 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Role::create(['name' => 'freelance editor', 'guard_name' => 'api']);
-        Role::create(['name' => 'editor', 'guard_name' => 'api']);
-        Role::create(['name' => 'chief editor', 'guard_name' => 'api']);
+        //Role::create(['name' => 'freelance editor', 'guard_name' => 'api']);
+        //Role::create(['name' => 'editor', 'guard_name' => 'api']);
+        //Role::create(['name' => 'chief editor', 'guard_name' => 'api']);
+        //Permission::create(['name' => 'create post', 'guard_name' => 'api']);
+        //Permission::create(['name' => 'edit post', 'guard_name' => 'api']);
+        //Permission::create(['name' => 'publish post', 'guard_name' => 'api']);
+        //$role = Role::findByName('editor', 'api');
+        //$role->givePermissionTo(['create post', 'edit post']);
 
-        Permission::create(['name' => 'create post', 'guard_name' => 'api']);
-        Permission::create(['name' => 'edit post', 'guard_name' => 'api']);
-        Permission::create(['name' => 'publish post', 'guard_name' => 'api']);
-
-        $role = Role::findByName('editor', 'api');
-        $role->givePermissionTo(['create post', 'edit post']);
-
+        $this->call(RolesTableSeeder::class);
+        $this->call(RoleHasPermissionsTableSeeder::class);
+        $this->call(ModelHasRolesTableSeeder::class);
+        $this->call(ModelHasPermissionsTableSeeder::class);
     }
 }
