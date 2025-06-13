@@ -38,6 +38,6 @@ class UserRepository
 
     public function userActive($user): bool
     {
-        return $this->user->find($user->id)->update(['phone_is_verified' => true]);
+        return $this->user->find($user->id)->update(['phone_is_verified' => 1]);
     }
 }

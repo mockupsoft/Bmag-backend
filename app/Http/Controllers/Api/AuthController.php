@@ -78,7 +78,7 @@ class AuthController extends Controller
             "success" => "success",
             "message" => "Kullanıcı aktif edildi",
             "data" => [
-                "user" => $user
+                "user" => $user->refresh()
             ]
         ]);
     }
