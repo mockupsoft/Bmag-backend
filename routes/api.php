@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,5 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('refresh-token', [AuthController::class, 'refreshToken'])->middleware('auth:api');
 
 Route::get('me', [UserController::class, 'me'])->middleware('auth:api');
+
+Route::get('get-categories', [CategoryController::class, 'getCategories']);
