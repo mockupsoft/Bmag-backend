@@ -22,4 +22,9 @@ class News extends Model
         "meta_description",
         "meta_keywords"
     ];
+
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
 }
