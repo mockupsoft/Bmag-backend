@@ -3,15 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryCollection;
 use App\Models\Category;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    private CategoryService $categoryService;
+
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+
     public function getCategories()
     {
-        $categories = Category::query()->orderBy('order', 'ASC')->get();
+        $categories = $this->categoryService->getCategories();
 
-        return response()->json($categories);
+        return new CategoryCollection($categories);
     }
 }
