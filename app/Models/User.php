@@ -39,6 +39,7 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     protected $guard_name = 'api';
+    
 
     /**
      * The attributes that should be cast.
