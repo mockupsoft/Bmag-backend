@@ -23,9 +23,9 @@ class NewsController extends Controller
         return new NewsCollection($news);
     }
 
-    public function getNewsForCategory($categoryId)
+    public function getNewsForCategory($categorySlug)
     {
-        $newsForCategory = $this->newsService->getNews($categoryId);
+        $newsForCategory = $this->newsService->getNews($categorySlug);
 
         return new NewsCollection($newsForCategory);
     }
