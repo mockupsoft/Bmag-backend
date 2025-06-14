@@ -29,3 +29,4 @@ Route::get('get-news', [NewsController::class, 'getNews']);
 Route::get('{categorySlug}/get-news-for-category', [NewsController::class, 'getNewsForCategory']);
 
 Route::get('get-magazines', [MagazineController::class, 'getMagazines']);
+Route::get('{magazineSlug}/get-news-for-magazine', [NewsController::class, 'getNewsForMagazine']);

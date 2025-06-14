@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use App\Models\Magazine;
 use App\Models\News;
 
 class NewsRepository
@@ -14,15 +15,25 @@ class NewsRepository
         $this->news = $news;
     }
 
-    public function getNews($categorySlug)
+    public function getNews($categorySlug, $magazineSlug)
     {
-        $category = Category::where('slug', $categorySlug)->first();
+        $category = Category::query()
+            ->where('slug', $categorySlug)
+            ->first();
+
+        $magazine = Magazine::query()
+            ->where('slug', $magazineSlug)
+            ->first();
+
         return $this
             ->news
             ->with('category', 'magazine')
-            ->when($categorySlug,
-                fn ($query) => $query->where('category_id', $category->id)
-            )
+            ->when($category, function ($query) use ($category) {
+                return $query->where('category_id', $category->id);
+            })
+            ->when($magazine, function ($query) use ($magazine) {
+                return $query->where('magazine_id', $magazine->id);
+            })
             ->where('is_published', true)
             ->latest()
             ->paginate(10);

@@ -29,4 +29,11 @@ class NewsController extends Controller
 
         return new NewsCollection($newsForCategory);
     }
+
+    public function getNewsForMagazine($magazineSlug)
+    {
+        $newsForMagazine = $this->newsService->getNews(null, $magazineSlug);
+
+        return new NewsCollection($newsForMagazine);
+    }
 }
