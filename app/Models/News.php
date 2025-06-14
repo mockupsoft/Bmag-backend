@@ -18,6 +18,7 @@ class News extends Model
         "is_published",
         "published_at",
         "category_id",
+        "magazine_id",
         "meta_title",
         "meta_description",
         "meta_keywords"
@@ -26,5 +27,10 @@ class News extends Model
     public function category()
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+
+    public function magazine()
+    {
+        return $this->hasOne(Magazine::class, 'id', 'magazine_id');
     }
 }

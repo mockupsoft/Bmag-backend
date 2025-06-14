@@ -17,7 +17,7 @@ class NewsRepository
     {
         return $this
             ->news
-            ->with('category')
+            ->with('category', 'magazine')
             ->when($categoryId,
                 fn ($query) => $query->where('category_id', $categoryId)
             )
