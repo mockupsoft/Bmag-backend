@@ -38,4 +38,14 @@ class NewsRepository
             ->latest()
             ->paginate(10);
     }
+
+    public function getNewForSlug($slug)
+    {
+        return $this->news->query()->where('slug', $slug)->first();
+    }
+
+    public function getNew($id)
+    {
+        return $this->news->query()->findOrFail($id);
+    }
 }

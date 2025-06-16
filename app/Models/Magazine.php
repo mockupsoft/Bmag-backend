@@ -21,4 +21,9 @@ class Magazine extends Model
         "robots",
         "is_active"
     ];
+
+    public function issues()
+    {
+        return $this->hasMany(MagazineIssue::class);
+    }
 }

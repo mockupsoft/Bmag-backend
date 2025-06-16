@@ -108,4 +108,19 @@ class AuthController extends Controller
             'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
+
+    public function logout()
+    {
+        try {
+            JWTAuth::invalidate(JWTAuth::getToken());
+
+            return response()->json([
+                'message' => 'Çıkış başarılı.'
+            ], 200);
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json([
+                'error' => 'Token geçersiz veya zaten çıkış yapılmış.'
+            ], 401);
+        }
+    }
 }

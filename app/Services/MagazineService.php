@@ -17,4 +17,19 @@ class MagazineService
     {
         return $this->magazineRepository->getMagazines();
     }
+
+    public function getMagazineIssues($magazine)
+    {
+        return $this->magazineRepository->getMagazineIssues($magazine);
+    }
+
+    public function getMagazineForSlug($magazineSlug)
+    {
+        return $this->magazineRepository->getMagazineForSlug($magazineSlug);
+    }
+
+    public function getMagazineIssue($magazineIssueSlug)
+    {
+        return $this->magazineRepository->getMagazineIssue($magazineIssueSlug);
+    }
 }

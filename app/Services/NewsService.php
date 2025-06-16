@@ -17,4 +17,14 @@ class NewsService
     {
         return $this->newsRepository->getNews($categorySlug, $magazineSlug);
     }
+
+    public function getNewForSlug($slug)
+    {
+        return $this->newsRepository->getNewForSlug($slug);
+    }
+
+    public function getNew($id)
+    {
+        return $this->newsRepository->getNew($id);
+    }
 }
