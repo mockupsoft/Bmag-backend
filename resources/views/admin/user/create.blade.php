@@ -16,7 +16,7 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                            {{ $role->label }} Rolü Ayarları</h1>
+                            Yeni Kullanıcı Ekle</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -32,7 +32,7 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="index.html" class="text-muted text-hover-primary">Roller</a>
+                                <a href="index.html" class="text-muted text-hover-primary">Kullanıcılar</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -41,7 +41,9 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">{{ $role->label }}</li>
+                            <li class="breadcrumb-item text-muted">
+                                Yeni Kullanıcı Ekle
+                            </li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -60,66 +62,99 @@
                         <!--begin::Card header-->
                         <div class="card-header">
                             <!--begin::Card title-->
-                            <div class="card-title fs-3 fw-bold">Genel Ayarlar</div>
+                            <div class="card-title fs-3 fw-bold">Genel Bilgiler</div>
                             <!--end::Card title-->
                         </div>
                         <!--end::Card header-->
                         <!--begin::Form-->
-                        <form class="form" method="POST" action="{{ route('admin.role.update', $role) }}">
+                        <form class="form" method="POST" action="{{ route('admin.user.store') }}">
                             @csrf
                             <!--begin::Card body-->
                             <div class="card-body p-9">
                                 <!--begin::Row-->
-
-                                <!--begin::Row-->
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3">Rol Adı</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3">Adı Soyadı</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid" name="label" value="{{ $role->label }}" />
+                                        <input type="text" class="form-control form-control-solid @error('name_surname') is-invalid @enderror" name="name_surname" />
+                                        @error('name_surname')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                                 <!--end::Row-->
-                                @foreach($permissions->groupBy('category') as $category => $permissions)
                                 <!--begin::Row-->
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3">{{ $category }}</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3">Telefon</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row">
+                                        <input type="text" class="form-control form-control-solid @error('phone_number') is-invalid @enderror" name="phone_number" />
+                                        @error('phone_number')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <!--end::Row-->
+                                <!--begin::Row-->
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-semibold mt-2 mb-3">E-Posta Adresi</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row">
+                                        <input type="text" class="form-control form-control-solid @error('email') is-invalid @enderror" name="email" />
+                                        @error('email')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <!--end::Row-->
+                                <!--begin::Row-->
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-semibold mt-2 mb-3">Şifre</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row">
+                                        <input type="text" class="form-control form-control-solid @error('password') is-invalid @enderror" name="password" />
+                                        @error('password')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <!--end::Row-->
+                                <!--begin::Row-->
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-semibold mt-2 mb-3">Roller</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9">
                                         <div class="d-flex fw-semibold h-100">
-                                            @foreach($permissions as $permission)
+                                            @foreach($roles as $role)
                                                 <div class="form-check form-check-custom form-check-solid me-9">
-                                                    <input name="permissions[]" class="form-check-input" type="checkbox" value="{{ $permission->name }}" id="{{ $permission->name }}" @checked(in_array($permission->name, $permissionNames))/>
-                                                    <label class="form-check-label ms-3" for="{{ $permission->name }}">{{ $permission->label }}</label>
+                                                    <input name="roles[]" class="form-check-input" type="checkbox" value="{{ $role->name }}" id="{{ $role->id }}"/>
+                                                    <label class="form-check-label ms-3" for="{{ $role->id }}">{{ $role->name }}</label>
                                                 </div>
                                             @endforeach
                                         </div>
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
-                                @endforeach
-                                <!--begin::Row-->
-                                <div class="row">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3">Status</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9">
-                                        <div class="form-check form-switch form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="" id="status" name="status" checked="checked" />
-                                            <label class="form-check-label fw-semibold text-gray-500 ms-3" for="status">Active</label>
-                                        </div>
+                                        @error('roles')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                     <!--end::Col-->
                                 </div>
@@ -128,7 +163,7 @@
                             <!--end::Card body-->
                             <!--begin::Card footer-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                <button type="reset" class="btn btn-light btn-active-light-primary me-2">Vazgeç</button>
+                                <a href="{{ route('admin.role.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
                                 <button type="submit" class="btn btn-primary">Kaydet</button>
                             </div>
                             <!--end::Card footer-->

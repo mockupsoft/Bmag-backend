@@ -38,8 +38,7 @@ class User extends Authenticatable implements JWTSubject
         'remember_token',
     ];
 
-    protected $guard_name = 'api';
-
+    protected $guard_name = 'web';
 
     /**
      * The attributes that should be cast.

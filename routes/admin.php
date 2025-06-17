@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserGroupController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,17 +17,75 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.index');
+    return view('admin.dashboard');
 });
 
 Route::get('home', function (){
     return view('home');
 });
 
+Route::get('gosterge-paneli', [DashboardController::class, 'dashboard'])->name('dashboard');
+
 Route::group(['as' => 'role.', 'prefix' => 'role'], function () {
     Route::get('index', [UserGroupController::class, 'index'])->name('index');
+    Route::get('create', [UserGroupController::class, 'create'])->name('create');
+    Route::post('store', [UserGroupController::class, 'store'])->name('store');
     Route::get('{role}/edit', [UserGroupController::class, 'edit'])->name('edit');
     Route::post('{role}/update', [UserGroupController::class, 'update'])->name('update');
 });
 
+Route::group(['as' => 'user.', 'prefix' => 'user'], function () {
+    Route::get('index', [UserController::class, 'index'])->name('index');
+    Route::get('create', [UserController::class, 'create'])->name('create');
+    Route::post('store', [UserController::class, 'store'])->name('store');
+    Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
+    Route::post('{user}/update', [UserController::class, 'update'])->name('update');
+});
+
 Auth::routes();
+
+
+Route::get('/auth/google', function () {
+    $query = http_build_query([
+        'client_id'     => env('GOOGLE_CLIENT_ID'),
+        'redirect_uri'  => env('GOOGLE_REDIRECT_URI'),
+        'response_type' => 'code',
+        'scope'         => 'openid email profile',
+        'access_type'   => 'offline',
+        'prompt'        => 'consent',
+    ]);
+
+    dd('https://accounts.google.com/o/oauth2/v2/auth?' . $query);
+
+    return redirect('https://accounts.google.com/o/oauth2/v2/auth?' . $query);
+});
+
+Route::get('/auth/google/callback', function (Illuminate\Http\Request $request) {
+    $code = $request->get('code');
+
+    // 1. Access token al
+    $response = Http::asForm()->post('https://oauth2.googleapis.com/token', [
+        'client_id'     => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect_uri'  => env('GOOGLE_REDIRECT_URI'),
+        'grant_type'    => 'authorization_code',
+        'code'          => $code,
+    ]);
+
+    $accessToken = $response->json()['access_token'];
+
+    // 2. Kullanıcı bilgilerini al
+    $googleUser = Http::withHeaders([
+        'Authorization' => 'Bearer ' . $accessToken,
+    ])->get('https://www.googleapis.com/oauth2/v3/userinfo')->json();
+
+    // 3. Kullanıcıyı kaydet veya login
+    $user = User::updateOrCreate(
+        ['email' => $googleUser['email']],
+        ['name' => $googleUser['name'], 'google_id' => $googleUser['sub']]
+    );
+
+    Auth::login($user);
+
+    return redirect('/dashboard');
+});

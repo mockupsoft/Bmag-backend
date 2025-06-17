@@ -15,13 +15,13 @@
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
-                        <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Kullanıcı Rolleri</h1>
+                        <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Kullanıcılar</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="index.html" class="text-muted text-hover-primary">Gösterge Paneli</a>
+                                <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Gösterge Paneli</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -30,7 +30,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">Kullanıcı Rolleri</li>
+                            <li class="breadcrumb-item text-muted">Kullanıcılar</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -39,7 +39,7 @@
                     <!--begin::Actions-->
                     <div class="d-flex align-items-center gap-2 gap-lg-3">
                         <!--begin::Primary button-->
-                        <a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Rol Ekle</a>
+                        <a href="{{ route('admin.user.create') }}" class="btn btn-sm fw-bold btn-primary">Kullanıcı Ekle</a>
                         <!--end::Primary button-->
                     </div>
                     <!--end::Actions-->
@@ -53,23 +53,6 @@
                 <div id="kt_app_content_container" class="app-container container-xxl">
                     <!--begin::Products-->
                     <div class="card card-flush">
-                        <!--begin::Card header-->
-                        <div class="card-header align-items-center py-5 gap-2 gap-md-5">
-                            <!--begin::Card title-->
-                            <div class="card-title">
-                                <!--begin::Search-->
-                                <div class="d-flex align-items-center position-relative my-1">
-                                    <i class="ki-duotone ki-magnifier fs-3 position-absolute ms-4">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                    <input type="text" data-kt-ecommerce-product-filter="search" class="form-control form-control-solid w-250px ps-12" placeholder="Ara..." />
-                                </div>
-                                <!--end::Search-->
-                            </div>
-                            <!--end::Card title-->
-                        </div>
-                        <!--end::Card header-->
                         <!--begin::Card body-->
                         <div class="card-body pt-0">
                             <!--begin::Table-->
@@ -81,13 +64,13 @@
                                             <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
                                         </div>
                                     </th>
-                                    <th class="min-w-200px">Rol</th>
-                                    <th class="text-end min-w-100px">Üye Sayısı</th>
+                                    <th class="min-w-200px">Adı Soyadı</th>
+                                    <th class="text-end min-w-100px">Rolü</th>
                                     <th class="text-end min-w-70px">Eylemler</th>
                                 </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
-                                @foreach($roles as $role)
+                                @foreach($users as $user)
                                     <tr>
                                         <td>
                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -95,16 +78,14 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="ms-5">
-                                                    <!--begin::Title-->
-                                                    <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $role->label }}</a>
-                                                    <!--end::Title-->
-                                                </div>
-                                            </div>
+                                            <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $user->name_surname }}</a>
                                         </td>
                                         <td class="text-end pe-0">
-                                            <span class="fw-bold">{{ $role->users()->count() }}</span>
+                                            <span class="fw-bold">
+                                                @foreach ($user->getRoleNames() as $role)
+                                                    <span class="badge bg-success">{{ $role }}</span>
+                                                @endforeach
+                                            </span>
                                         </td>
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Eylemler
@@ -113,7 +94,7 @@
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.role.edit', $role) }}" class="menu-link px-3">Düzenle</a>
+                                                    <a href="{{ route('admin.user.edit', $user) }}" class="menu-link px-3">Düzenle</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
@@ -139,32 +120,5 @@
             <!--end::Content-->
         </div>
         <!--end::Content wrapper-->
-        <!--begin::Footer-->
-        <div id="kt_app_footer" class="app-footer">
-            <!--begin::Footer container-->
-            <div class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
-                <!--begin::Copyright-->
-                <div class="text-gray-900 order-2 order-md-1">
-                    <span class="text-muted fw-semibold me-1">2024&copy;</span>
-                    <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">Keenthemes</a>
-                </div>
-                <!--end::Copyright-->
-                <!--begin::Menu-->
-                <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
-                    <li class="menu-item">
-                        <a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
-                    </li>
-                </ul>
-                <!--end::Menu-->
-            </div>
-            <!--end::Footer container-->
-        </div>
-        <!--end::Footer-->
     </div>
 @endsection
