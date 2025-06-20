@@ -1,7 +1,7 @@
 @extends('admin.parent')
 
 @section('sidebar')
-    @include('admin.sidebar', ['page' => 'user'])
+    @include('admin.sidebar', ['page' => 'news'])
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
-                        <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Kullanıcılar</h1>
+                        <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Haberler</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -30,7 +30,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">Kullanıcılar</li>
+                            <li class="breadcrumb-item text-muted">Haberler</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -39,7 +39,7 @@
                     <!--begin::Actions-->
                     <div class="d-flex align-items-center gap-2 gap-lg-3">
                         <!--begin::Primary button-->
-                        <a href="{{ route('admin.user.create') }}" class="btn btn-sm fw-bold btn-primary">Kullanıcı Ekle</a>
+                        <a href="{{ route('admin.news.create') }}" class="btn btn-sm fw-bold btn-primary">Haber Ekle</a>
                         <!--end::Primary button-->
                     </div>
                     <!--end::Actions-->
@@ -64,13 +64,14 @@
                                             <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
                                         </div>
                                     </th>
-                                    <th class="min-w-200px">Adı Soyadı</th>
-                                    <th class="text-end min-w-100px">Rolü</th>
+                                    <th class="min-w-200px">Başlık</th>
+                                    <th class="text-end min-w-100px">Yayın Durumu</th>
+                                    <th class="text-end min-w-100px">Yayın Tarihi</th>
                                     <th class="text-end min-w-70px">Eylemler</th>
                                 </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
-                                @foreach($users as $user)
+                                @foreach($news as $new)
                                     <tr>
                                         <td>
                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -78,14 +79,13 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $user->name_surname }}</a>
+                                            <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $new->title }}</a>
                                         </td>
-                                        <td class="text-end pe-0">
-                                            <span class="fw-bold">
-                                                @foreach ($user->getRoleNames() as $role)
-                                                    <span class="badge bg-success">{{ $role }}</span>
-                                                @endforeach
-                                            </span>
+                                        <td class="text-end">
+                                            {{ $new->is_published ? 'Aktif' : 'Pasif' }}
+                                        </td>
+                                        <td class="text-end">
+                                            {{ $new->published_at }}
                                         </td>
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Eylemler
@@ -94,7 +94,7 @@
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.user.edit', $user) }}" class="menu-link px-3">Düzenle</a>
+                                                    <a href="{{ route('admin.news.edit', $new) }}" class="menu-link px-3">Düzenle</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->

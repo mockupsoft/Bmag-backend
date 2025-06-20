@@ -34,7 +34,7 @@
                 <!--begin::Menu-->
                 <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold fs-6" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
                     <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if($page == "dashboard") hover @endif">
                         <!--begin:Menu link-->
                         <a class="menu-link" href="{{ route('admin.dashboard') }}">
                             <span class="menu-icon">
@@ -50,7 +50,64 @@
                     </div>
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(in_array($page, ['news', 'category', 'not-approved-news'])) hover show @endif">
+                        <!--begin:Menu link-->
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-address-book fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Haber Yönetimi</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <!--end:Menu link-->
+                        <!--begin:Menu sub-->
+                        <div class="menu-sub menu-sub-accordion">
+                            <!--begin:Menu item-->
+                            <div class="menu-item @if($page == "news") hover @endif">
+                                <!--begin:Menu link-->
+                                <a class="menu-link" href="{{ route('admin.news.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Haberler</span>
+                                </a>
+                                <!--end:Menu link-->
+                            </div>
+                            <!--end:Menu item-->
+                            <!--begin:Menu item-->
+                            <div class="menu-item @if($page == "not-approved-news") hover @endif">
+                                <!--begin:Menu link-->
+                                <a class="menu-link" href="{{ route('admin.news.not-approved') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Onay Bekleyen Haberler</span>
+                                </a>
+                                <!--end:Menu link-->
+                            </div>
+                            <!--end:Menu item-->
+                            <!--begin:Menu item-->
+                            <div class="menu-item @if($page == "category") hover @endif">
+                                <!--begin:Menu link-->
+                                <a class="menu-link" href="{{ route('admin.category.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Haber Kategorileri</span>
+                                </a>
+                                <!--end:Menu link-->
+                            </div>
+                            <!--end:Menu item-->
+                        </div>
+                        <!--end:Menu sub-->
+                    </div>
+                    <!--end:Menu item-->
+                    <!--begin:Menu item-->
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(in_array($page, ['user', 'role'])) hover show @endif">
                         <!--begin:Menu link-->
                         <span class="menu-link">
                             <span class="menu-icon">
@@ -67,7 +124,7 @@
                         <!--begin:Menu sub-->
                         <div class="menu-sub menu-sub-accordion">
                             <!--begin:Menu item-->
-                            <div class="menu-item">
+                            <div class="menu-item @if($page == "user") hover @endif">
                                 <!--begin:Menu link-->
                                 <a class="menu-link" href="{{ route('admin.user.index') }}">
                                     <span class="menu-bullet">
@@ -79,7 +136,7 @@
                             </div>
                             <!--end:Menu item-->
                             <!--begin:Menu item-->
-                            <div class="menu-item">
+                            <div class="menu-item @if($page == "role") hover @endif">
                                 <!--begin:Menu link-->
                                 <a class="menu-link" href="{{ route('admin.role.index') }}">
                                     <span class="menu-bullet">

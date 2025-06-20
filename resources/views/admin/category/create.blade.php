@@ -1,7 +1,7 @@
 @extends('admin.parent')
 
 @section('sidebar')
-    @include('admin.sidebar', ['page' => 'role'])
+    @include('admin.sidebar', ['page' => 'category'])
 @endsection
 
 @section('content')
@@ -16,13 +16,13 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                            Yeni Rol Ekle</h1>
+                            Yeni Kategori Ekle</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Gösterge Paneli</a>
+                                <a href="index.html" class="text-muted text-hover-primary">Gösterge Paneli</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -32,7 +32,7 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="{{ route('admin.role.index') }}" class="text-muted text-hover-primary">Roller</a>
+                                <a href="index.html" class="text-muted text-hover-primary">Kategoriler</a>
                             </li>
                             <!--end::Item-->
                         </ul>
@@ -57,7 +57,7 @@
                         </div>
                         <!--end::Card header-->
                         <!--begin::Form-->
-                        <form class="form" method="POST" action="{{ route('admin.role.store') }}">
+                        <form class="form" method="POST" action="{{ route('admin.category.store') }}">
                             @csrf
                             <!--begin::Card body-->
                             <div class="card-body p-9">
@@ -67,69 +67,22 @@
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3">Rol Adı</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3">Adı</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid @error('label') is-invalid @enderror" name="label" />
-                                        @error('label')
+                                        <input type="text" class="form-control form-control-solid @error('name') is-invalid @enderror" name="name" />
+                                        @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
                                 </div>
-                                <!--end::Row-->
-                                @foreach($permissions->groupBy('category') as $category => $permissions)
-                                    <!--begin::Row-->
-                                    <div class="row mb-8">
-                                        <!--begin::Col-->
-                                        <div class="col-xl-3">
-                                            <div class="fs-6 fw-semibold mt-2 mb-3">{{ $category }}</div>
-                                        </div>
-                                        <!--end::Col-->
-                                        <!--begin::Col-->
-                                        <div class="col-xl-9">
-                                            <div class="d-flex fw-semibold h-100">
-                                                @foreach($permissions as $permission)
-                                                    <div class="form-check form-check-custom form-check-solid me-9">
-                                                        <input name="permissions[]" class="form-check-input" type="checkbox" value="{{ $permission->name }}" id="{{ $permission->name }}"/>
-                                                        <label class="form-check-label ms-3" for="{{ $permission->name }}">{{ $permission->label }}</label>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            @error('permissions')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                            @error('permissions.*')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                        <!--end::Col-->
-                                    </div>
-                                    <!--end::Row-->
-                                @endforeach
-                                <!--begin::Row-->
-                                <div class="row">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3">Durum</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9">
-                                        <div class="form-check form-switch form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="" id="status" name="status" checked="checked" />
-                                            <label class="form-check-label fw-semibold text-gray-500 ms-3" for="status">Aktif</label>
-                                        </div>
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
                             </div>
                             <!--end::Card body-->
                             <!--begin::Card footer-->
                             <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                <a href="{{ route('admin.role.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
+                                <a href="{{ route('admin.category.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
                                 <button type="submit" class="btn btn-primary">Kaydet</button>
                             </div>
                             <!--end::Card footer-->

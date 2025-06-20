@@ -1,7 +1,7 @@
 @extends('admin.parent')
 
 @section('sidebar')
-    @include('admin.sidebar')
+    @include('admin.sidebar', ['page' => 'dashboard'])
 @endsection
 
 @section('content')

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserGroupController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +42,24 @@ Route::group(['as' => 'user.', 'prefix' => 'user'], function () {
     Route::post('store', [UserController::class, 'store'])->name('store');
     Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
     Route::post('{user}/update', [UserController::class, 'update'])->name('update');
+});
+
+Route::group(['as' => 'news.', 'prefix' => 'news'], function () {
+    Route::get('index', [NewsController::class, 'index'])->name('index');
+    Route::get('create', [NewsController::class, 'create'])->name('create');
+    Route::post('store', [NewsController::class, 'store'])->name('store');
+    Route::get('{newsId}/edit', [NewsController::class, 'edit'])->name('edit');
+    Route::post('{newsId}/update', [NewsController::class, 'update'])->name('update');
+
+    Route::get('index/not-approved', [NewsController::class, 'notApproved'])->name('not-approved');
+});
+
+Route::group(['as' => 'category.', 'prefix' => 'category'], function () {
+    Route::get('index', [CategoryController::class, 'index'])->name('index');
+    Route::get('create', [CategoryController::class, 'create'])->name('create');
+    Route::post('store', [CategoryController::class, 'store'])->name('store');
+    Route::get('{category}/edit', [CategoryController::class, 'edit'])->name('edit');
+    Route::post('{category}/update', [CategoryController::class, 'update'])->name('update');
 });
 
 Auth::routes();

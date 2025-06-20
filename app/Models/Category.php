@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
@@ -22,4 +23,18 @@ class Category extends Model
         "order",
         "is_active"
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($category) {
+            $category->slug = Str::slug($category->name);
+
+            // Slug benzersiz olacaksa burada kontrol edebilirsin
+            $originalSlug = $category->slug;
+            $i = 1;
+            while (Category::where('slug', $category->slug)->exists()) {
+                $category->slug = $originalSlug . '-' . $i++;
+            }
+        });
+    }
 }

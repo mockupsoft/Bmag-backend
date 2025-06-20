@@ -17,11 +17,13 @@ class CreateNewsTable extends Migration
             $table->text('image')->nullable(); // Kapak görseli
             $table->boolean('is_published')->default(false); // Yayın durumu
             $table->timestamp('published_at')->nullable(); // Yayın tarihi
+            $table->unsignedBigInteger('published_by')->nullable();
             $table->unsignedBigInteger('category_id')->nullable(); // Kategori (eğer kategoriler varsa)
             $table->unsignedBigInteger('magazine_id')->nullable();
             $table->string('meta_title')->nullable(); // SEO başlığı
             $table->string('meta_description')->nullable(); // SEO açıklaması
             $table->string('meta_keywords')->nullable(); // SEO anahtar kelimeleri
+            $table->string('robots')->default('index, follow'); // Arama motoru direktifleri
             $table->timestamps();
         });
     }

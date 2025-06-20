@@ -1,7 +1,7 @@
 @extends('admin.parent')
 
 @section('sidebar')
-    @include('admin.sidebar')
+    @include('admin.sidebar', ['page' => 'role'])
 @endsection
 
 @section('content')

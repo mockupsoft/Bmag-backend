@@ -14,12 +14,12 @@ class NewsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('news')->delete();
-        
+
         \DB::table('news')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'title' => 'Iusto odit et et.',
@@ -36,16 +36,17 @@ Qui ea veritatis occaecati tempora consequatur dolor. Dicta non ratione laudanti
 Velit rerum eius animi quod. Ad distinctio sed deserunt et. Alias adipisci illum tenetur officia.',
                 'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/car_photos/17/20241013152303-670be5d79387d.jpg',
                 'is_published' => 1,
-                'published_at' => '2025-06-11 02:51:59',
+                'published_at' => null,
                 'category_id' => 1,
                 'magazine_id' => 1,
                 'meta_title' => 'Nulla ab occaecati accusamus rerum mollitia accusantium libero.',
                 'meta_description' => 'Omnis ex officiis aut placeat sed et in. Aut et quis pariatur voluptatem. Dignissimos esse magnam explicabo laborum dolorem totam voluptatibus.',
                 'meta_keywords' => 'quia, ducimus, cumque, et, aliquam',
+                'robots' => 'index, follow',
                 'created_at' => '2025-06-13 09:34:18',
                 'updated_at' => '2025-06-13 09:34:18',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'title' => 'Nobis odio laborum qui pariatur et aut suscipit sapiente.',
@@ -62,16 +63,17 @@ Pariatur provident quis soluta consequatur debitis velit deserunt veniam. Dolori
 Asperiores sint voluptas voluptatem. In delectus numquam reprehenderit ea doloribus cumque. Natus voluptatem maiores et excepturi aut et eaque sit.',
                 'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/car_photos/17/20241013152303-670be5d79387d.jpg',
                 'is_published' => 1,
-                'published_at' => '2025-06-08 01:44:43',
+                'published_at' => null,
                 'category_id' => 2,
                 'magazine_id' => 1,
                 'meta_title' => 'Veniam tenetur modi facilis tempora.',
                 'meta_description' => 'Quo et aut alias repellat veritatis excepturi dolor beatae. Placeat enim doloremque provident eos voluptatem dolores. Voluptatem debitis delectus consectetur.',
                 'meta_keywords' => 'eos, rerum, dolor, vel, non',
+                'robots' => 'index, follow',
                 'created_at' => '2025-06-13 09:34:18',
                 'updated_at' => '2025-06-13 09:34:18',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'title' => 'Quia est voluptatum aut ab autem sit.',
@@ -94,11 +96,12 @@ Accusantium saepe illo voluptatibus tenetur quo voluptates. Quas omnis est et si
                 'meta_title' => 'Assumenda quae et ut id voluptatibus eos.',
                 'meta_description' => 'Est quam autem quasi nemo ad atque. Tempore aut id ipsa fuga dignissimos deleniti. Rerum et necessitatibus in et distinctio. Quidem sed veniam alias.',
                 'meta_keywords' => 'rerum, voluptatem, officiis, molestiae, quas',
+                'robots' => 'index, follow',
                 'created_at' => '2025-06-13 09:34:18',
                 'updated_at' => '2025-06-13 09:34:18',
             ),
         ));
-        
-        
+
+
     }
 }

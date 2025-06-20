@@ -36,6 +36,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
     <link href="{{ admin_asset('plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ admin_asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    @yield('css')
     <!--end::Global Stylesheets Bundle-->
     <script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
 </head>
@@ -4126,6 +4127,7 @@ License: For each use you must have a valid license purchased only from above li
 <script src="{{ admin_asset('js/custom/utilities/modals/upgrade-plan.js') }}"></script>
 <script src="{{ admin_asset('js/custom/utilities/modals/new-target.js') }}"></script>
 <script src="{{ admin_asset('js/custom/utilities/modals/users-search.js') }}"></script>
+@yield('js')
 <script>
     @if(Session::has('success_message'))
         $(function() {
