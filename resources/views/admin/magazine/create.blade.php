@@ -1,7 +1,7 @@
 @extends('admin.parent')
 
 @section('sidebar')
-    @include('admin.sidebar', ['page' => 'news'])
+    @include('admin.sidebar', ['page' => 'magazine'])
 @endsection
 
 @section('css')
@@ -20,13 +20,13 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                            Yeni Haber Ekle</h1>
+                            Yeni Dergi Ekle</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="index.html" class="text-muted text-hover-primary">Gösterge Paneli</a>
+                                <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Gösterge Paneli</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -36,7 +36,7 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="index.html" class="text-muted text-hover-primary">Haberler</a>
+                                <a href="{{ route('admin.magazine.index') }}" class="text-muted text-hover-primary">Dergiler</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -46,7 +46,7 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                Yeni Haber Ekle
+                                Yeni Dergi Ekle
                             </li>
                             <!--end::Item-->
                         </ul>
@@ -61,7 +61,7 @@
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container container-xxl">
-                    <form class="form" method="POST" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
+                    <form class="form" method="POST" action="{{ route('admin.magazine.store') }}" enctype="multipart/form-data">
                         @csrf
                         <!--begin::Card-->
                         <div class="card">
@@ -79,13 +79,13 @@
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Başlık</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Adı</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" />
-                                        @error('title')
+                                        <input type="text" class="form-control form-control-solid @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" />
+                                        @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
@@ -95,13 +95,13 @@
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Kısa Özet</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Açıklama</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <textarea name="summary" id="" cols="30" rows="10" class="form-control form-control-solid @error('summary') is-invalid @enderror" style="resize: none">{!! old('summary') !!}</textarea>
-                                        @error('summary')
+                                        <textarea name="description" id="description" cols="30" rows="10" class="form-control form-control-solid @error('description') is-invalid @enderror" style="resize: none">{!! old('description') !!}</textarea>
+                                        @error('description')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
@@ -111,65 +111,7 @@
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">İçerik</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9 fv-row">
-                                        <textarea name="content" id="content" cols="30" rows="10" class="form-control form-control-solid @error('content') is-invalid @enderror" style="resize: none">{!! old('content') !!}</textarea>
-                                        @error('content')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row mb-8">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Kategori</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9 fv-row">
-                                        <select name="category_id" id="category_id" class="form-control form-control-solid">
-                                            <option value="">Seçiniz</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('category_id')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row mb-8">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Dergi</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9 fv-row">
-                                        <select name="magazine_id" id="magazine_id" class="form-control form-control-solid">
-                                            <option value="">Seçiniz</option>
-                                            @foreach($magazines as $magazine)
-                                                <option value="{{ $magazine->id }}"  @selected(old('magazine_id') == $magazine->id)>{{ $magazine->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('magazine_id')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row mb-8">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3">Resim</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Resim</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
@@ -179,23 +121,6 @@
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3">Durum</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9">
-                                        <select name="status" id="status_id" class="form-control form-control-solid">
-                                            <option value="1" @selected(old('status') == 1)>Aktif</option>
-                                            <option value="2" @selected(old('status') == 2)>Pasif</option>
-                                        </select>
-                                    </div>
-                                    <!--end::Col-->
                                 </div>
                                 <!--end::Row-->
                             </div>
@@ -287,7 +212,7 @@
                                 <!--end::Card body-->
                                 <!--begin::Card footer-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                    <a href="{{ route('admin.news.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
+                                    <a href="{{ route('admin.magazine.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
                                     <button type="submit" class="btn btn-primary">Kaydet</button>
                                 </div>
                                 <!--end::Card footer-->
@@ -335,7 +260,7 @@
     <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 
     <script>
-        CKEDITOR.replace('content', {
+        CKEDITOR.replace('description', {
             extraPlugins: 'uploadimage',
             removeDialogTabs: 'image:advanced;link:advanced',
 

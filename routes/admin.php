@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MagazineController;
+use App\Http\Controllers\Admin\MagazineIssueController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserGroupController;
@@ -60,6 +62,22 @@ Route::group(['as' => 'category.', 'prefix' => 'category'], function () {
     Route::post('store', [CategoryController::class, 'store'])->name('store');
     Route::get('{category}/edit', [CategoryController::class, 'edit'])->name('edit');
     Route::post('{category}/update', [CategoryController::class, 'update'])->name('update');
+});
+
+Route::group(['as' => 'magazine.', 'prefix' => 'magazine'], function () {
+    Route::get('index', [MagazineController::class, 'index'])->name('index');
+    Route::get('create', [MagazineController::class, 'create'])->name('create');
+    Route::post('store', [MagazineController::class, 'store'])->name('store');
+    Route::get('{magazine}/edit', [MagazineController::class, 'edit'])->name('edit');
+    Route::post('{magazine}/update', [MagazineController::class, 'update'])->name('update');
+});
+
+Route::group(['as' => 'magazine-issue.', 'prefix' => 'magazine-issue'], function () {
+    Route::get('index', [MagazineIssueController::class, 'index'])->name('index');
+    Route::get('create', [MagazineIssueController::class, 'create'])->name('create');
+    Route::post('store', [MagazineIssueController::class, 'store'])->name('store');
+    Route::get('{magazine}/edit', [MagazineIssueController::class, 'edit'])->name('edit');
+    Route::post('{magazine}/update', [MagazineIssueController::class, 'update'])->name('update');
 });
 
 Auth::routes();

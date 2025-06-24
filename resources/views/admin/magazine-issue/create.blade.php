@@ -1,7 +1,7 @@
 @extends('admin.parent')
 
 @section('sidebar')
-    @include('admin.sidebar', ['page' => 'news'])
+    @include('admin.sidebar', ['page' => 'magazine-issue'])
 @endsection
 
 @section('css')
@@ -20,13 +20,13 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                            Yeni Haber Ekle</h1>
+                            Yeni Sayı Ekle</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="index.html" class="text-muted text-hover-primary">Gösterge Paneli</a>
+                                <a href="{{ route('admin.dashboard') }}" class="text-muted text-hover-primary">Gösterge Paneli</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -36,7 +36,7 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="index.html" class="text-muted text-hover-primary">Haberler</a>
+                                <a href="{{ route('admin.magazine-issue.index') }}" class="text-muted text-hover-primary">Sayılar</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -46,7 +46,7 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                Yeni Haber Ekle
+                                Yeni Sayı Ekle
                             </li>
                             <!--end::Item-->
                         </ul>
@@ -59,9 +59,19 @@
             <!--end::Toolbar-->
             <!--begin::Content-->
             <div id="kt_app_content" class="app-content flex-column-fluid">
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container container-xxl">
-                    <form class="form" method="POST" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
+                    <form class="form" method="POST" action="{{ route('admin.magazine-issue.store') }}" enctype="multipart/form-data">
                         @csrf
                         <!--begin::Card-->
                         <div class="card">
@@ -75,6 +85,27 @@
                             <!--begin::Form-->
                             <!--begin::Card body-->
                             <div class="card-body p-9">
+                                <!--begin::Row-->
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Dergi</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row">
+                                        <select name="magazine_id" id="magazine_id" class="form-control form-control-solid">
+                                            <option value="">Seçiniz</option>
+                                            @foreach($magazines as $magazine)
+                                                <option value="{{ $magazine->id }}" @selected(old('magazine_id') == $magazine->id)>{{ $magazine->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('magazine_id')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <!--end::Row-->
                                 <!--begin::Row-->
                                 <div class="row mb-8">
                                     <!--begin::Col-->
@@ -95,13 +126,13 @@
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Kısa Özet</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Dergi Numarası</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <textarea name="summary" id="" cols="30" rows="10" class="form-control form-control-solid @error('summary') is-invalid @enderror" style="resize: none">{!! old('summary') !!}</textarea>
-                                        @error('summary')
+                                        <input type="text" class="form-control form-control-solid @error('issue_number') is-invalid @enderror" name="issue_number" value="{{ old('issue_number') }}" />
+                                        @error('issue_number')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
@@ -111,13 +142,13 @@
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">İçerik</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Dergi Tarihi</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <textarea name="content" id="content" cols="30" rows="10" class="form-control form-control-solid @error('content') is-invalid @enderror" style="resize: none">{!! old('content') !!}</textarea>
-                                        @error('content')
+                                        <input type="date" class="form-control form-control-solid @error('issue_date') is-invalid @enderror" name="issue_date" value="{{ old('issue_date') }}" />
+                                        @error('issue_date')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
@@ -127,18 +158,13 @@
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Kategori</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Barcode</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <select name="category_id" id="category_id" class="form-control form-control-solid">
-                                            <option value="">Seçiniz</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('category_id')
+                                        <input type="text" class="form-control form-control-solid @error('barcode') is-invalid @enderror" name="barcode" value="{{ old('barcode') }}" />
+                                        @error('barcode')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
@@ -148,18 +174,13 @@
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Dergi</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Fiyat (KDV Hariç)</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <select name="magazine_id" id="magazine_id" class="form-control form-control-solid">
-                                            <option value="">Seçiniz</option>
-                                            @foreach($magazines as $magazine)
-                                                <option value="{{ $magazine->id }}"  @selected(old('magazine_id') == $magazine->id)>{{ $magazine->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('magazine_id')
+                                        <input type="text" class="form-control form-control-solid @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" />
+                                        @error('price')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
@@ -169,13 +190,77 @@
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3">Resim</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Fiyat (KDV Dahil)</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="file" class="form-control" name="image">
-                                        @error('image')
+                                        <input type="text" class="form-control form-control-solid @error('vat_price') is-invalid @enderror" name="vat_price" value="{{ old('vat_price') }}" />
+                                        @error('vat_price')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <!--end::Row-->
+                                <!--begin::Row-->
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Stok</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row">
+                                        <input type="text" class="form-control form-control-solid @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock') }}" />
+                                        @error('stock')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <!--end::Row-->
+                                <!--begin::Row-->
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Açıklama</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row">
+                                        <textarea name="description" id="description" cols="30" rows="10" class="form-control form-control-solid @error('description') is-invalid @enderror" style="resize: none">{!! old('description') !!}</textarea>
+                                        @error('description')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <!--end::Row-->
+                                <!--begin::Row-->
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Resim</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row">
+                                        <input type="file" class="form-control" name="cover_image">
+                                        @error('cover_image')
+                                        <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <!--end::Row-->
+                                <!--begin::Row-->
+                                <div class="row mb-8">
+                                    <!--begin::Col-->
+                                    <div class="col-xl-3">
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">PDF Dergi</div>
+                                    </div>
+                                    <!--end::Col-->
+                                    <!--begin::Col-->
+                                    <div class="col-xl-9 fv-row">
+                                        <input type="file" class="form-control" name="pdf_path">
+                                        @error('pdf_path')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
                                     </div>
@@ -287,7 +372,7 @@
                                 <!--end::Card body-->
                                 <!--begin::Card footer-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                    <a href="{{ route('admin.news.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
+                                    <a href="{{ route('admin.magazine-issue.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
                                     <button type="submit" class="btn btn-primary">Kaydet</button>
                                 </div>
                                 <!--end::Card footer-->

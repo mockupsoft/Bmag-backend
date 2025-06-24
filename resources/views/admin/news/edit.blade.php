@@ -287,7 +287,7 @@
                                 <!--end::Card body-->
                                 <!--begin::Card footer-->
                                 <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                    <a href="{{ route('admin.role.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
+                                    <a href="{{ route('admin.mews.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
                                     <button type="submit" class="btn btn-primary">Kaydet</button>
                                 </div>
                                 <!--end::Card footer-->

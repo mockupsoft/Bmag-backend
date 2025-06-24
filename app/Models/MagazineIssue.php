@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class MagazineIssue extends Model
 {
@@ -23,4 +24,23 @@ class MagazineIssue extends Model
         "stock",
         "is_published",
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($magazineIssue) {
+            $magazineIssue->slug = Str::slug($magazineIssue->title);
+
+            // Slug benzersiz olacaksa burada kontrol edebilirsin
+            $originalSlug = $magazineIssue->slug;
+            $i = 1;
+            while (News::where('slug', $magazineIssue->slug)->exists()) {
+                $magazineIssue->slug = $originalSlug . '-' . $i++;
+            }
+        });
+    }
+
+    public function magazine()
+    {
+        return $this->belongsTo(Magazine::class);
+    }
 }

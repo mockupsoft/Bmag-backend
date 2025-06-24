@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Magazine extends Model
 {
@@ -21,6 +22,18 @@ class Magazine extends Model
         "robots",
         "is_active"
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($magazine) {
+            $magazine->slug = Str::slug($magazine->title);
+            $originalSlug = $magazine->slug;
+            $i = 1;
+            while (News::where('slug', $magazine->slug)->exists()) {
+                $magazine->slug = $originalSlug . '-' . $i++;
+            }
+        });
+    }
 
     public function issues()
     {
