@@ -14,39 +14,32 @@ class NewsTableSeeder extends Seeder
      */
     public function run()
     {
-
+        
 
         \DB::table('news')->delete();
-
+        
         \DB::table('news')->insert(array (
-            0 =>
+            0 => 
             array (
                 'id' => 1,
-                'title' => 'Iusto odit et et.',
+                'title' => 'Iusto odit et et.1',
                 'slug' => 'iusto-odit-et-et',
                 'summary' => 'Deserunt dicta minima illo nam non. Non et labore animi molestiae voluptates. Alias corrupti culpa nihil et voluptates.',
-                'content' => 'Natus et officiis quo praesentium. Tenetur voluptatem enim et molestiae ratione accusamus temporibus. Ea et sint perferendis in.
-
-Non maiores ducimus quo corporis porro quo nihil. Sit enim dolorum aut voluptas animi deserunt rem. Alias debitis ipsam rem ut deleniti qui. Quod impedit sunt aut possimus.
-
-Temporibus ducimus architecto est et. Distinctio molestiae in rerum sunt. Laborum nesciunt eveniet provident officia ea nobis. Ipsa cumque veritatis repellendus omnis cupiditate consequuntur tempora.
-
-Qui ea veritatis occaecati tempora consequatur dolor. Dicta non ratione laudantium quo quis. Dignissimos ut minima non facere.
-
-Velit rerum eius animi quod. Ad distinctio sed deserunt et. Alias adipisci illum tenetur officia.',
-                'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/car_photos/17/20241013152303-670be5d79387d.jpg',
-                'is_published' => 1,
-                'published_at' => null,
+                'content' => '<p>Natus et officiis quo praesentium. Tenetur voluptatem enim et molestiae ratione accusamus temporibus. Ea et sint perferendis in. Non maiores ducimus quo corporis porro quo nihil. Sit enim dolorum aut voluptas animi deserunt rem. Alias debitis ipsam rem ut deleniti qui. Quod impedit sunt aut possimus. Temporibus ducimus architecto est et. Distinctio molestiae in rerum sunt. Laborum nesciunt eveniet provident officia ea nobis. Ipsa cumque veritatis repellendus omnis cupiditate consequuntur tempora. Qui ea veritatis occaecati tempora consequatur dolor. Dicta non ratione laudantium quo quis. Dignissimos ut minima non facere. Velit rerum eius animi quod. Ad distinctio sed deserunt et. Alias adipisci illum tenetur officia.</p>',
+                'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1750338176.webp',
+                'is_published' => 0,
+                'published_at' => NULL,
+                'published_by' => NULL,
                 'category_id' => 1,
                 'magazine_id' => 1,
-                'meta_title' => 'Nulla ab occaecati accusamus rerum mollitia accusantium libero.',
-                'meta_description' => 'Omnis ex officiis aut placeat sed et in. Aut et quis pariatur voluptatem. Dignissimos esse magnam explicabo laborum dolorem totam voluptatibus.',
-                'meta_keywords' => 'quia, ducimus, cumque, et, aliquam',
+                'meta_title' => NULL,
+                'meta_description' => NULL,
+                'meta_keywords' => NULL,
                 'robots' => 'index, follow',
                 'created_at' => '2025-06-13 09:34:18',
-                'updated_at' => '2025-06-13 09:34:18',
+                'updated_at' => '2025-06-19 13:02:56',
             ),
-            1 =>
+            1 => 
             array (
                 'id' => 2,
                 'title' => 'Nobis odio laborum qui pariatur et aut suscipit sapiente.',
@@ -63,7 +56,8 @@ Pariatur provident quis soluta consequatur debitis velit deserunt veniam. Dolori
 Asperiores sint voluptas voluptatem. In delectus numquam reprehenderit ea doloribus cumque. Natus voluptatem maiores et excepturi aut et eaque sit.',
                 'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/car_photos/17/20241013152303-670be5d79387d.jpg',
                 'is_published' => 1,
-                'published_at' => null,
+                'published_at' => NULL,
+                'published_by' => NULL,
                 'category_id' => 2,
                 'magazine_id' => 1,
                 'meta_title' => 'Veniam tenetur modi facilis tempora.',
@@ -73,7 +67,7 @@ Asperiores sint voluptas voluptatem. In delectus numquam reprehenderit ea dolori
                 'created_at' => '2025-06-13 09:34:18',
                 'updated_at' => '2025-06-13 09:34:18',
             ),
-            2 =>
+            2 => 
             array (
                 'id' => 3,
                 'title' => 'Quia est voluptatum aut ab autem sit.',
@@ -91,6 +85,7 @@ Accusantium saepe illo voluptatibus tenetur quo voluptates. Quas omnis est et si
                 'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/car_photos/17/20241013152303-670be5d79387d.jpg',
                 'is_published' => 1,
                 'published_at' => '2025-06-10 08:02:16',
+                'published_by' => NULL,
                 'category_id' => 3,
                 'magazine_id' => 1,
                 'meta_title' => 'Assumenda quae et ut id voluptatibus eos.',
@@ -100,8 +95,48 @@ Accusantium saepe illo voluptatibus tenetur quo voluptates. Quas omnis est et si
                 'created_at' => '2025-06-13 09:34:18',
                 'updated_at' => '2025-06-13 09:34:18',
             ),
+            3 => 
+            array (
+                'id' => 8,
+                'title' => 'wqewq',
+                'slug' => 'wqewq',
+                'summary' => 'eqwe',
+                'content' => '<p>qweqwe</p>',
+                'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1750333120.jpeg',
+                'is_published' => 0,
+                'published_at' => NULL,
+                'published_by' => NULL,
+                'category_id' => 2,
+                'magazine_id' => 2,
+                'meta_title' => NULL,
+                'meta_description' => NULL,
+                'meta_keywords' => NULL,
+                'robots' => 'index, follow',
+                'created_at' => '2025-06-19 11:38:40',
+                'updated_at' => '2025-06-19 11:38:40',
+            ),
+            4 => 
+            array (
+                'id' => 9,
+                'title' => 'wqewqew',
+                'slug' => 'wqewqew',
+                'summary' => 'qewqe',
+                'content' => '<p>weqwe</p>',
+                'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1750333442.webp',
+                'is_published' => 0,
+                'published_at' => NULL,
+                'published_by' => NULL,
+                'category_id' => 2,
+                'magazine_id' => 3,
+                'meta_title' => NULL,
+                'meta_description' => NULL,
+                'meta_keywords' => NULL,
+                'robots' => 'index, follow',
+                'created_at' => '2025-06-19 11:44:02',
+                'updated_at' => '2025-06-19 11:44:02',
+            ),
         ));
-
-
+        
+        
     }
 }

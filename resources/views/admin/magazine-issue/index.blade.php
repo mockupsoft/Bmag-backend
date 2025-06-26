@@ -39,7 +39,7 @@
                     <!--begin::Actions-->
                     <div class="d-flex align-items-center gap-2 gap-lg-3">
                         <!--begin::Primary button-->
-                        <a href="{{ route('admin.magazine-issue.create') }}" class="btn btn-sm fw-bold btn-primary">Dergiye Sayı Ekle</a>
+                        <a href="{{ route('admin.magazine-issue.create', $magazine) }}" class="btn btn-sm fw-bold btn-primary">Dergiye Sayı Ekle</a>
                         <!--end::Primary button-->
                     </div>
                     <!--end::Actions-->
@@ -64,8 +64,8 @@
                                             <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
                                         </div>
                                     </th>
+                                    <th class="min-w-200px">Sayı</th>
                                     <th class="min-w-200px">Dergi</th>
-                                    <th class="min-w-200px">Adı</th>
                                     <th class="text-end min-w-70px">Eylemler</th>
                                 </tr>
                                 </thead>
@@ -78,10 +78,10 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $magazineIssue->title }}</a>
+                                            <span class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ \Carbon\Carbon::parse($magazineIssue->issue_date)->translatedFormat('j F Y') }}</span>
                                         </td>
                                         <td>
-                                            <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $magazineIssue->magazine->name }}</a>
+                                            <span class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $magazineIssue->magazine->name }}</span>
                                         </td>
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Eylemler
@@ -90,7 +90,7 @@
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.magazine-issue.edit', $magazineIssue) }}" class="menu-link px-3">Düzenle</a>
+                                                    <a href="{{ route('admin.magazine-issue.edit', [$magazine, $magazineIssue]) }}" class="menu-link px-3">Düzenle</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->

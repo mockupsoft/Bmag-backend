@@ -71,7 +71,7 @@
                 @endif
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container container-xxl">
-                    <form class="form" method="POST" action="{{ route('admin.magazine-issue.store', $magazine) }}" enctype="multipart/form-data">
+                    <form class="form" method="POST" action="{{ route('admin.magazine-issue.update', $magazineIssue) }}" enctype="multipart/form-data">
                         @csrf
                         <!--begin::Card-->
                         <div class="card">
@@ -94,7 +94,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid @error('issue_code') is-invalid @enderror" name="issue_code" value="{{ old('issue_code') }}" />
+                                        <input type="text" class="form-control form-control-solid @error('issue_code') is-invalid @enderror" name="issue_code" value="{{ old('issue_code', $magazineIssue->issue_code) }}" />
                                         @error('issue_code')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -110,7 +110,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="date" class="form-control form-control-solid @error('issue_date') is-invalid @enderror" name="issue_date" value="{{ old('issue_date') }}" />
+                                        <input type="date" class="form-control form-control-solid @error('issue_date') is-invalid @enderror" name="issue_date" value="{{ old('issue_date', $magazineIssue->issue_date) }}" />
                                         @error('issue_date')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -126,7 +126,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid @error('barcode') is-invalid @enderror" name="barcode" value="{{ old('barcode') }}" />
+                                        <input type="text" class="form-control form-control-solid @error('barcode') is-invalid @enderror" name="barcode" value="{{ old('barcode', $magazineIssue->barcode) }}" />
                                         @error('barcode')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -142,7 +142,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" />
+                                        <input type="text" class="form-control form-control-solid @error('price') is-invalid @enderror" name="price" value="{{ old('price', $magazineIssue->price) }}" />
                                         @error('price')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -158,7 +158,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid @error('vat_price') is-invalid @enderror" name="vat_price" value="{{ old('vat_price') }}" />
+                                        <input type="text" class="form-control form-control-solid @error('vat_price') is-invalid @enderror" name="vat_price" value="{{ old('vat_price', $magazineIssue->vat_price) }}" />
                                         @error('vat_price')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -174,7 +174,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock') }}" />
+                                        <input type="text" class="form-control form-control-solid @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock', $magazineIssue->stock) }}" />
                                         @error('stock')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -190,7 +190,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <textarea name="description" id="description" cols="30" rows="10" class="form-control form-control-solid @error('description') is-invalid @enderror" style="resize: none">{!! old('description') !!}</textarea>
+                                        <textarea name="description" id="description" cols="30" rows="10" class="form-control form-control-solid @error('description') is-invalid @enderror" style="resize: none">{!! old('description', $magazineIssue->description) !!}</textarea>
                                         @error('description')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -210,6 +210,13 @@
                                         @error('cover_image')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
+                                        @if($magazineIssue->cover_image)
+                                            <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" style="margin-top: 10px">
+                                                <img src="{{ $magazineIssue->cover_image }}" alt="">
+                                            </div>
+                                            <input type="checkbox" name="delete_cover_image" id="delete_cover_image">
+                                            <label for="delete_cover_image">Görsel silinsin</label>
+                                        @endif
                                     </div>
                                 </div>
                                 <!--end::Row-->
@@ -226,6 +233,13 @@
                                         @error('pdf_path')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
+                                        @if($magazineIssue->pdf_path)
+                                            <a href="{{ $magazineIssue->pdf_path }}" target="_blank" style="margin-top: 10px; font-size: xx-large">
+                                                <i class="fa fa-file-pdf fa-fw"></i>
+                                            </a>
+                                            <input type="checkbox" name="delete_pdf" id="delete_pdf">
+                                            <label for="delete_pdf">Dosya silinsin</label>
+                                        @endif
                                     </div>
                                 </div>
                                 <!--end::Row-->

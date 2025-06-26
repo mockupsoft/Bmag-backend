@@ -12,7 +12,6 @@ class MagazineIssueResource extends JsonResource
         return [
             'id'           => $this->id,
             'magazine_id'  => $this->magazine_id,
-            'title'        => $this->title,
             'issue_number' => $this->issue_number,
             'issue_date'   => $this->issue_date,
             'cover_image'  => $this->cover_image,

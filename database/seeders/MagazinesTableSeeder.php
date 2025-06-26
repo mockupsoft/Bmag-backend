@@ -22,9 +22,9 @@ class MagazinesTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'name' => 'Hello',
+                'name' => '1Hello',
                 'slug' => 'hello',
-                'description' => NULL,
+                'description' => '<p>qweqweqw</p>',
                 'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/car_photos/17/20241013152303-670be5d79387d.jpg',
                 'meta_title' => NULL,
                 'meta_description' => NULL,
@@ -34,7 +34,7 @@ class MagazinesTableSeeder extends Seeder
                 'robots' => 'index, follow',
                 'is_active' => 1,
                 'created_at' => NULL,
-                'updated_at' => NULL,
+                'updated_at' => '2025-06-20 08:43:45',
             ),
             1 => 
             array (
@@ -69,6 +69,23 @@ class MagazinesTableSeeder extends Seeder
                 'is_active' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
+            ),
+            3 => 
+            array (
+                'id' => 4,
+                'name' => 'Deneme dergisi',
+                'slug' => '',
+                'description' => '<p>Deneme dergisi</p>',
+                'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1750406577.jpeg',
+                'meta_title' => NULL,
+                'meta_description' => NULL,
+                'meta_keywords' => NULL,
+                'canonical_url' => NULL,
+                'seo_image' => NULL,
+                'robots' => 'index, follow',
+                'is_active' => 1,
+                'created_at' => '2025-06-20 08:02:57',
+                'updated_at' => '2025-06-20 08:02:58',
             ),
         ));
         

@@ -11,10 +11,9 @@ class CreateMagazineIssuesTable extends Migration
         Schema::create('magazine_issues', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('magazine_id');
-            $table->string('title');
-            $table->string('slug')->unique(); // SEO dostu URL
-            $table->integer('issue_number');
             $table->date('issue_date')->nullable();
+            $table->text('description');
+            $table->integer('issue_code');
             $table->text('cover_image')->nullable();
             $table->text('pdf_path')->nullable();
             $table->string('barcode')->unique();

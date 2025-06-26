@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 
-class MagazineIssueStoreRequest extends FormRequest
+class MagazineIssueUpdateRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -16,7 +16,7 @@ class MagazineIssueStoreRequest extends FormRequest
             'description'   => 'required|string',
             'issue_code'    => 'required|string|max:50',
             'issue_date'    => 'required|date',
-            'barcode'       => 'required|string|max:255|unique:magazine_issues,barcode',
+            'barcode'       => 'required|string|max:255',
             'price'         => 'required|numeric|min:0',
             'vat_price'     => 'required|numeric|min:0',
             'stock'         => 'required|integer|min:0',
@@ -37,7 +37,6 @@ class MagazineIssueStoreRequest extends FormRequest
 
             'barcode.required'       => 'Barkod alanı zorunludur.',
             'barcode.max'            => 'Barkod en fazla 255 karakter olabilir.',
-            'barcode.unique'         => 'Barkod daha önce kayıt edilmiş. Lütfen başka deneyiniz.',
 
             'price.required'         => 'Fiyat alanı zorunludur.',
             'price.numeric'          => 'Fiyat sayısal bir değer olmalıdır.',

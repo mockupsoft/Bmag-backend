@@ -39,4 +39,9 @@ class MagazineRepository
     {
         return $this->magazineIssue->query()->where('slug', $magazineIssueSlug)->first();
     }
+
+    public function getMagazineIssueForIssueDate($magazineIssueIssueDate)
+    {
+        return $this->magazineIssue->query()->where('issue_date', $magazineIssueIssueDate)->first();
+    }
 }

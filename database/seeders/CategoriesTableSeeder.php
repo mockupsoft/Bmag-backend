@@ -35,7 +35,7 @@ class CategoriesTableSeeder extends Seeder
                 'order' => 9999,
                 'is_active' => 1,
                 'created_at' => NULL,
-                'updated_at' => NULL,
+                'updated_at' => '2025-06-20 07:26:05',
             ),
             1 => 
             array (
@@ -108,6 +108,24 @@ class CategoriesTableSeeder extends Seeder
                 'is_active' => 1,
                 'created_at' => NULL,
                 'updated_at' => NULL,
+            ),
+            5 => 
+            array (
+                'id' => 6,
+                'name' => 'Eğlence',
+                'slug' => 'eglence',
+                'description' => NULL,
+                'image' => NULL,
+                'meta_title' => NULL,
+                'meta_description' => NULL,
+                'meta_keywords' => NULL,
+                'canonical_url' => NULL,
+                'seo_image' => NULL,
+                'robots' => 'index, follow',
+                'order' => 9999,
+                'is_active' => 1,
+                'created_at' => '2025-06-18 13:48:39',
+                'updated_at' => '2025-06-18 13:48:39',
             ),
         ));
         

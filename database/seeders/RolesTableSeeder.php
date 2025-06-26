@@ -14,12 +14,12 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-
+        
 
         \DB::table('roles')->delete();
-
+        
         \DB::table('roles')->insert(array (
-            0 =>
+            0 => 
             array (
                 'id' => 1,
                 'name' => 'freelance editor',
@@ -28,7 +28,7 @@ class RolesTableSeeder extends Seeder
                 'created_at' => '2025-06-08 17:32:53',
                 'updated_at' => '2025-06-08 17:32:53',
             ),
-            1 =>
+            1 => 
             array (
                 'id' => 2,
                 'name' => 'editor',
@@ -37,7 +37,7 @@ class RolesTableSeeder extends Seeder
                 'created_at' => '2025-06-08 17:32:53',
                 'updated_at' => '2025-06-09 11:10:05',
             ),
-            2 =>
+            2 => 
             array (
                 'id' => 3,
                 'name' => 'Baş Editör',
@@ -47,7 +47,7 @@ class RolesTableSeeder extends Seeder
                 'updated_at' => '2025-06-08 17:32:53',
             ),
         ));
-
-
+        
+        
     }
 }

@@ -78,18 +78,6 @@
                                 <!--end:Menu link-->
                             </div>
                             <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item @if($page == "magazine-issue") hover @endif">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="{{ route('admin.magazine-issue.index') }}">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">Aylık Sayılar</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
                         </div>
                         <!--end:Menu sub-->
                     </div>

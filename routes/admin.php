@@ -73,11 +73,11 @@ Route::group(['as' => 'magazine.', 'prefix' => 'magazine'], function () {
 });
 
 Route::group(['as' => 'magazine-issue.', 'prefix' => 'magazine-issue'], function () {
-    Route::get('index', [MagazineIssueController::class, 'index'])->name('index');
-    Route::get('create', [MagazineIssueController::class, 'create'])->name('create');
-    Route::post('store', [MagazineIssueController::class, 'store'])->name('store');
-    Route::get('{magazine}/edit', [MagazineIssueController::class, 'edit'])->name('edit');
-    Route::post('{magazine}/update', [MagazineIssueController::class, 'update'])->name('update');
+    Route::get('{magazine}/index', [MagazineIssueController::class, 'index'])->name('index');
+    Route::get('{magazine}/create', [MagazineIssueController::class, 'create'])->name('create');
+    Route::post('{magazine}/store', [MagazineIssueController::class, 'store'])->name('store');
+    Route::get('{magazine}/{magazineIssue}/edit', [MagazineIssueController::class, 'edit'])->name('edit');
+    Route::post('{magazineIssue}/update', [MagazineIssueController::class, 'update'])->name('update');
 });
 
 Auth::routes();
