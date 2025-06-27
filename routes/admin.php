@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MagazineController;
 use App\Http\Controllers\Admin\MagazineIssueController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\RollCommentController;
+use App\Http\Controllers\Admin\RollController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserGroupController;
 use Illuminate\Support\Facades\Route;
@@ -28,56 +30,74 @@ Route::get('home', function (){
     return view('home');
 });
 
-Route::get('gosterge-paneli', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('gosterge-paneli', [DashboardController::class, 'dashboard'])->name('dashboard');
 
-Route::group(['as' => 'role.', 'prefix' => 'role'], function () {
-    Route::get('index', [UserGroupController::class, 'index'])->name('index');
-    Route::get('create', [UserGroupController::class, 'create'])->name('create');
-    Route::post('store', [UserGroupController::class, 'store'])->name('store');
-    Route::get('{role}/edit', [UserGroupController::class, 'edit'])->name('edit');
-    Route::post('{role}/update', [UserGroupController::class, 'update'])->name('update');
-});
+    Route::group(['as' => 'role.', 'prefix' => 'role'], function () {
+        Route::get('index', [UserGroupController::class, 'index'])->name('index');
+        Route::get('create', [UserGroupController::class, 'create'])->name('create');
+        Route::post('store', [UserGroupController::class, 'store'])->name('store');
+        Route::get('{role}/edit', [UserGroupController::class, 'edit'])->name('edit');
+        Route::post('{role}/update', [UserGroupController::class, 'update'])->name('update');
+    });
 
-Route::group(['as' => 'user.', 'prefix' => 'user'], function () {
-    Route::get('index', [UserController::class, 'index'])->name('index');
-    Route::get('create', [UserController::class, 'create'])->name('create');
-    Route::post('store', [UserController::class, 'store'])->name('store');
-    Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
-    Route::post('{user}/update', [UserController::class, 'update'])->name('update');
-});
+    Route::group(['as' => 'user.', 'prefix' => 'user'], function () {
+        Route::get('index', [UserController::class, 'index'])->name('index');
+        Route::get('create', [UserController::class, 'create'])->name('create');
+        Route::post('store', [UserController::class, 'store'])->name('store');
+        Route::get('{user}/edit', [UserController::class, 'edit'])->name('edit');
+        Route::post('{user}/update', [UserController::class, 'update'])->name('update');
+    });
 
-Route::group(['as' => 'news.', 'prefix' => 'news'], function () {
-    Route::get('index', [NewsController::class, 'index'])->name('index');
-    Route::get('create', [NewsController::class, 'create'])->name('create');
-    Route::post('store', [NewsController::class, 'store'])->name('store');
-    Route::get('{newsId}/edit', [NewsController::class, 'edit'])->name('edit');
-    Route::post('{newsId}/update', [NewsController::class, 'update'])->name('update');
+    Route::group(['as' => 'news.', 'prefix' => 'news'], function () {
+        Route::get('index', [NewsController::class, 'index'])->name('index');
+        Route::get('create', [NewsController::class, 'create'])->name('create');
+        Route::post('store', [NewsController::class, 'store'])->name('store');
+        Route::get('{newsId}/edit', [NewsController::class, 'edit'])->name('edit');
+        Route::post('{newsId}/update', [NewsController::class, 'update'])->name('update');
 
-    Route::get('index/not-approved', [NewsController::class, 'notApproved'])->name('not-approved');
-});
+        Route::get('index/not-approved', [NewsController::class, 'notApproved'])->name('not-approved');
+    });
 
-Route::group(['as' => 'category.', 'prefix' => 'category'], function () {
-    Route::get('index', [CategoryController::class, 'index'])->name('index');
-    Route::get('create', [CategoryController::class, 'create'])->name('create');
-    Route::post('store', [CategoryController::class, 'store'])->name('store');
-    Route::get('{category}/edit', [CategoryController::class, 'edit'])->name('edit');
-    Route::post('{category}/update', [CategoryController::class, 'update'])->name('update');
-});
+    Route::group(['as' => 'category.', 'prefix' => 'category'], function () {
+        Route::get('index', [CategoryController::class, 'index'])->name('index');
+        Route::get('create', [CategoryController::class, 'create'])->name('create');
+        Route::post('store', [CategoryController::class, 'store'])->name('store');
+        Route::get('{category}/edit', [CategoryController::class, 'edit'])->name('edit');
+        Route::post('{category}/update', [CategoryController::class, 'update'])->name('update');
+    });
 
-Route::group(['as' => 'magazine.', 'prefix' => 'magazine'], function () {
-    Route::get('index', [MagazineController::class, 'index'])->name('index');
-    Route::get('create', [MagazineController::class, 'create'])->name('create');
-    Route::post('store', [MagazineController::class, 'store'])->name('store');
-    Route::get('{magazine}/edit', [MagazineController::class, 'edit'])->name('edit');
-    Route::post('{magazine}/update', [MagazineController::class, 'update'])->name('update');
-});
+    Route::group(['as' => 'magazine.', 'prefix' => 'magazine'], function () {
+        Route::get('index', [MagazineController::class, 'index'])->name('index');
+        Route::get('create', [MagazineController::class, 'create'])->name('create');
+        Route::post('store', [MagazineController::class, 'store'])->name('store');
+        Route::get('{magazine}/edit', [MagazineController::class, 'edit'])->name('edit');
+        Route::post('{magazine}/update', [MagazineController::class, 'update'])->name('update');
+    });
 
-Route::group(['as' => 'magazine-issue.', 'prefix' => 'magazine-issue'], function () {
-    Route::get('{magazine}/index', [MagazineIssueController::class, 'index'])->name('index');
-    Route::get('{magazine}/create', [MagazineIssueController::class, 'create'])->name('create');
-    Route::post('{magazine}/store', [MagazineIssueController::class, 'store'])->name('store');
-    Route::get('{magazine}/{magazineIssue}/edit', [MagazineIssueController::class, 'edit'])->name('edit');
-    Route::post('{magazineIssue}/update', [MagazineIssueController::class, 'update'])->name('update');
+    Route::group(['as' => 'magazine-issue.', 'prefix' => 'magazine-issue'], function () {
+        Route::get('{magazine}/index', [MagazineIssueController::class, 'index'])->name('index');
+        Route::get('{magazine}/create', [MagazineIssueController::class, 'create'])->name('create');
+        Route::post('{magazine}/store', [MagazineIssueController::class, 'store'])->name('store');
+        Route::get('{magazine}/{magazineIssue}/edit', [MagazineIssueController::class, 'edit'])->name('edit');
+        Route::post('{magazineIssue}/update', [MagazineIssueController::class, 'update'])->name('update');
+    });
+
+    Route::group(['as' => 'roll.', 'prefix' => 'roll'], function () {
+        Route::get('{magazine}/index', [RollController::class, 'index'])->name('index');
+        Route::get('{magazine}/create', [RollController::class, 'create'])->name('create');
+        Route::post('{magazine}/store', [RollController::class, 'store'])->name('store');
+        Route::get('{roll}/edit', [RollController::class, 'edit'])->name('edit');
+        Route::post('{roll}/update', [RollController::class, 'update'])->name('update');
+    });
+
+    Route::group(['as' => 'roll-comments.', 'prefix' => 'roll-comments'], function () {
+        Route::get('index', [RollCommentController::class, 'index'])->name('index');
+        Route::get('create', [RollCommentController::class, 'create'])->name('create');
+        Route::post('store', [RollCommentController::class, 'store'])->name('store');
+        Route::get('{rollComment}/edit', [RollCommentController::class, 'edit'])->name('edit');
+        Route::post('{rollComment}/update', [RollCommentController::class, 'update'])->name('update');
+    });
 });
 
 Auth::routes();

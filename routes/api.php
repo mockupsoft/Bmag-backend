@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ContactFormController;
 use App\Http\Controllers\Api\MagazineController;
 use App\Http\Controllers\Api\NewsController;
+use App\Http\Controllers\Api\RollController;
 use App\Http\Controllers\Api\SubscriberController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,3 +45,7 @@ Route::post('subscribe', [SubscriberController::class, 'subscribe'])->middleware
 
 Route::post('add-news-to-favorites', [NewsController::class, 'addNewsToFavorites'])->middleware('auth:api');
 Route::get('get-favorites', [NewsController::class, 'getFavorites'])->middleware('auth:api');
+
+Route::get('get-roll', [RollController::class, 'getRoll']);
+Route::post('{roll}/roll-like', [RollController::class, 'like'])->middleware('auth:api');
+Route::post('{roll}/roll-comment', [RollController::class, 'comment'])->middleware('auth:api');

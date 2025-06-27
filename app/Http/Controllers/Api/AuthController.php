@@ -29,22 +29,23 @@ class AuthController extends Controller
     {
         $user = $this->userService->create($request->all());
 
-        $message = "Telefon doğrulama kodunuz: " . $user->phone_verification_code;
+        //$message = "Telefon doğrulama kodunuz: " . $user->phone_verification_code;
+        //if (!$this->netGsmService->sendSms($user, $message)){
+        //    return response()->json([
+        //        "success" => "error",
+        //        "message" => "SMS gönderilirken bir hata oluştu.",
+        //        "data" => []
+        //    ]);
+        //}
 
-        if (!$this->netGsmService->sendSms($user, $message)){
-            return response()->json([
-                "success" => "error",
-                "message" => "SMS gönderilirken bir hata oluştu.",
-                "data" => []
-            ]);
+        if (!$token = JWTAuth::attempt(['email' => $user->email, 'password' => $request->password])) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
         return response()->json([
-            "status" => "success",
-            "message" => "SMS doğrulama kodu gönderildi.",
-            "data" => [
-                'user_id' => $user->id
-            ]
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth('api')->factory()->getTTL() * 60,
         ]);
     }
 

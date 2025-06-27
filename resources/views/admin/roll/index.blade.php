@@ -15,7 +15,7 @@
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
-                        <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Dergiler</h1>
+                        <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Roll</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -30,7 +30,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">Dergiler</li>
+                            <li class="breadcrumb-item text-muted">Roll</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -39,7 +39,7 @@
                     <!--begin::Actions-->
                     <div class="d-flex align-items-center gap-2 gap-lg-3">
                         <!--begin::Primary button-->
-                        <a href="{{ route('admin.magazine.create') }}" class="btn btn-sm fw-bold btn-primary">Dergi Ekle</a>
+                        <a href="{{ route('admin.roll.create', $magazine) }}" class="btn btn-sm fw-bold btn-primary">Roll Ekle</a>
                         <!--end::Primary button-->
                     </div>
                     <!--end::Actions-->
@@ -64,12 +64,12 @@
                                             <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
                                         </div>
                                     </th>
-                                    <th class="min-w-200px">Adı</th>
+                                    <th class="min-w-200px">Video Linki</th>
                                     <th class="text-end min-w-70px">Eylemler</th>
                                 </tr>
                                 </thead>
                                 <tbody class="fw-semibold text-gray-600">
-                                @foreach($magazines as $magazine)
+                                @foreach($rolls as $roll)
                                     <tr>
                                         <td>
                                             <div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -77,28 +77,13 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $magazine->name }}</a>
+                                            <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $roll->path }}</a>
                                         </td>
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Eylemler
                                                 <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
                                             <!--begin::Menu-->
                                             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.magazine-issue.index', $magazine) }}" class="menu-link px-3">Sayılar</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.roll.index', $magazine) }}" class="menu-link px-3">Roll</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.magazine.edit', $magazine) }}" class="menu-link px-3">Düzenle</a>
-                                                </div>
-                                                <!--end::Menu item-->
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
                                                     <a href="#" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row">Delete</a>
