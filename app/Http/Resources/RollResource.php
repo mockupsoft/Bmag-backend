@@ -12,6 +12,7 @@ class RollResource extends JsonResource
         return [
             'id'                => $this->id,
             'path' => $this->path,
+            'description' => $this->description,
             'magazine' => [
                 'id' => $this->magazine_id,
                 'name' => $this->magazine->name,

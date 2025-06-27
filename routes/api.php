@@ -49,3 +49,5 @@ Route::get('get-favorites', [NewsController::class, 'getFavorites'])->middleware
 Route::get('get-roll', [RollController::class, 'getRoll']);
 Route::post('{roll}/roll-like', [RollController::class, 'like'])->middleware('auth:api');
 Route::post('{roll}/roll-comment', [RollController::class, 'comment'])->middleware('auth:api');
+
+Route::post('update-profile', [UserController::class, 'updateProfile'])->middleware('auth:api');
