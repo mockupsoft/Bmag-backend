@@ -23,6 +23,7 @@ class User extends Authenticatable implements JWTSubject
         'name_surname',
         'email',
         'password',
+        'profile_image',
         'phone_number',
         'phone_verification_code',
         'phone_is_verified',
@@ -59,4 +60,28 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+
+    // app/Models/User.php
+
+    public function getFormattedNameAttribute(): string
+    {
+        $parts = explode(' ', trim($this->name_surname));
+        $count = count($parts);
+
+        if ($count === 1) {
+            return $parts[0];
+        }
+
+        $firstName = $parts[0];
+        $lastNameInitial = mb_substr($parts[$count - 1], 0, 1) . '.';
+
+        if ($count >= 3) {
+            $secondName = $parts[1];
+            return "$firstName $secondName $lastNameInitial";
+        }
+
+        return "$firstName $lastNameInitial";
+    }
+
 }

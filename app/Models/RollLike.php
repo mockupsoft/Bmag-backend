@@ -12,4 +12,9 @@ class RollLike extends Model
         "user_id",
         "roll_id",
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

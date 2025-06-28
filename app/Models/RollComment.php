@@ -21,4 +21,9 @@ class RollComment extends Model
     {
         return $this->belongsTo(Roll::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

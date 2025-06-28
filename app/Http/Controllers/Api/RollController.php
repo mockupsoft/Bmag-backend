@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\RollCommentStoreRequest;
+use App\Http\Resources\RollCommentCollection;
+use App\Http\Resources\RollLikeCollection;
 use App\Http\Resources\RollResource;
 use App\Models\Roll;
 use App\Models\RollComment;
@@ -11,6 +13,7 @@ use App\Models\RollLike;
 use App\Models\RollView;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class RollController extends Controller
@@ -101,5 +104,23 @@ class RollController extends Controller
             "status" => "success",
             "message" => "Yorumunuz ulaştı, inceleme sonucunda yayınlanacak."
         ]);
+    }
+
+    public function getLikes(Roll $roll, Request $request)
+    {
+        $rollLikes = RollLike::query()
+            ->where('roll_id', $roll->id)
+            ->paginate($request->per_page ?? 10);
+
+        return new RollLikeCollection($rollLikes);
+    }
+
+    public function getComments(Roll $roll, Request $request)
+    {
+        $rollComments = RollComment::query()
+            ->where('roll_id', $roll->id)
+            ->paginate($request->per_page ?? 10);
+
+        return new RollCommentCollection($rollComments);
     }
 }

@@ -50,4 +50,7 @@ Route::get('get-roll', [RollController::class, 'getRoll']);
 Route::post('{roll}/roll-like', [RollController::class, 'like'])->middleware('auth:api');
 Route::post('{roll}/roll-comment', [RollController::class, 'comment'])->middleware('auth:api');
 
+Route::get('{roll}/get-likes', [RollController::class, 'getLikes'])->middleware('auth:api');
+Route::get('{roll}/get-comments', [RollController::class, 'getComments'])->middleware('auth:api');
+
 Route::post('update-profile', [UserController::class, 'updateProfile'])->middleware('auth:api');
