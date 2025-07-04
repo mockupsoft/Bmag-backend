@@ -3,7 +3,7 @@
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
         <a href="index.html">
-            <img alt="Logo" src="{{ admin_asset('media/logos/default-dark.svg') }}" class="h-25px app-sidebar-logo-default" />
+            <img alt="Logo" src="{{ admin_asset('media/logos/default-dark.png') }}" class="h-25px app-sidebar-logo-default" />
             <img alt="Logo" src="{{ admin_asset('media/logos/default-small.svg') }}" class="h-20px app-sidebar-logo-minimize" />
         </a>
         <!--end::Logo image-->
