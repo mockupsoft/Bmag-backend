@@ -62,7 +62,7 @@ class MagazineController extends Controller
                 "message" => "Dergi bulunamadı"
             ], 404);
         }
-        $news = $this->newsService->getNews(null, $magazine->slug);
+        $news = $this->newsService->getNewsForSlug(null, $magazine->slug);
         return new NewsCollection($news);
     }
 }

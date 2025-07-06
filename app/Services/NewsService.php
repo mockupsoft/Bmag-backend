@@ -13,9 +13,9 @@ class NewsService
         $this->newsRepository = $newsRepository;
     }
 
-    public function getNews($categorySlug = null, $magazineSlug = null)
+    public function getNewsForSlug($categorySlug = null, $magazineSlug = null)
     {
-        return $this->newsRepository->getNews($categorySlug, $magazineSlug);
+        return $this->newsRepository->getNewsForSlug($categorySlug, $magazineSlug);
     }
 
     public function getNewForSlug($slug)

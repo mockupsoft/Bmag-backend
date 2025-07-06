@@ -44,4 +44,9 @@ class Magazine extends Model
     {
         return $this->hasMany(Roll::class);
     }
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
 }

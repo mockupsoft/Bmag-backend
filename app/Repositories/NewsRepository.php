@@ -15,7 +15,7 @@ class NewsRepository
         $this->news = $news;
     }
 
-    public function getNews($categorySlug, $magazineSlug)
+    public function getNewsForSlug($categorySlug, $magazineSlug)
     {
         $category = Category::query()
             ->where('slug', $categorySlug)

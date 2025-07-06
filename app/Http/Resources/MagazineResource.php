@@ -25,6 +25,7 @@ class MagazineResource extends JsonResource
             'is_active'         => (bool) $this->is_active,
             'created_at'        => $this->created_at?->toDateTimeString(),
             'updated_at'        => $this->updated_at?->toDateTimeString(),
+            'news' => $this->news,
         ];
     }
 }

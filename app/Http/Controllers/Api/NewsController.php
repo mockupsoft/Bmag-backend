@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\MagazineCollection;
 use App\Http\Resources\NewsCollection;
 use App\Http\Resources\NewsResource;
+use App\Models\Magazine;
 use App\Models\News;
 use App\Models\UserFavorite;
 use App\Services\NewsService;
@@ -20,9 +22,9 @@ class NewsController extends Controller
         $this->newsService = $newsService;
     }
 
-    public function getNews()
+    public function getNewsForSlug()
     {
-        $news = $this->newsService->getNews();
+        $news = $this->newsService->getNewsForSlug();
         return new NewsCollection($news);
     }
 
@@ -35,14 +37,14 @@ class NewsController extends Controller
 
     public function getNewsForCategory($categorySlug)
     {
-        $newsForCategory = $this->newsService->getNews($categorySlug);
+        $newsForCategory = $this->newsService->getNewsForSlug($categorySlug);
 
         return new NewsCollection($newsForCategory);
     }
 
     public function getNewsForMagazine($magazineSlug)
     {
-        $newsForMagazine = $this->newsService->getNews(null, $magazineSlug);
+        $newsForMagazine = $this->newsService->getNewsForSlug(null, $magazineSlug);
 
         return new NewsCollection($newsForMagazine);
     }
@@ -89,5 +91,14 @@ class NewsController extends Controller
         $userFavoriteNews = News::query()->whereIn('id', $userFavorites)->paginate(10);
 
         return new NewsCollection($userFavoriteNews);
+    }
+
+    public function getNews()
+    {
+        $magazines = Magazine::query()->with(['news' => function ($newsQuery) {
+            $newsQuery->limit(5);
+        }])->get();
+
+        return new MagazineCollection($magazines);
     }
 }
