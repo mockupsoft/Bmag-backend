@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\UpdateProfileRequest;
+use App\Http\Resources\NewsCollection;
+use App\Http\Resources\NewsResource;
 use App\Http\Resources\UserResource;
+use App\Models\News;
+use App\Models\UserNewsViews;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -23,5 +27,13 @@ class UserController extends Controller
         $user->update($request->validated());
 
         return new UserResource($user->refresh());
+    }
+
+    public function getNewsViewingHistory()
+    {
+        $newsViewingHistory = UserNewsViews::query()->where('user_id', auth('api')->id())->pluck('news_id')->toArray();
+        $news = News::query()->whereIn('id', $newsViewingHistory)->get();
+
+        return new NewsCollection($news);
     }
 }

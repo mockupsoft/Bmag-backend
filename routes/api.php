@@ -54,3 +54,4 @@ Route::get('{roll}/get-likes', [RollController::class, 'getLikes'])->middleware(
 Route::get('{roll}/get-comments', [RollController::class, 'getComments'])->middleware('auth:api');
 
 Route::post('update-profile', [UserController::class, 'updateProfile'])->middleware('auth:api');
+Route::get('get-news-viewing-history', [UserController::class, 'getNewsViewingHistory'])->middleware('auth:api');

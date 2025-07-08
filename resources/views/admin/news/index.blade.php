@@ -80,7 +80,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $new->title }}</a>
+                                            <a class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ $new->title }}</a>
                                         </td>
                                         <td class="text-end">
                                             {{ $new->is_published ? 'Aktif' : 'Pasif' }}

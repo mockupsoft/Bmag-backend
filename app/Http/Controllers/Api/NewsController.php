@@ -31,6 +31,15 @@ class NewsController extends Controller
     public function getNew($slug)
     {
         $new = $this->newsService->getNewForSlug($slug);
+        if (!$new)
+            return response()->json([
+                "status" => "error",
+                "message" => "News not found"
+            ], 404);
+
+        if (Auth::guard('api')->check()) {
+            $this->newsService->readsUserForNews(Auth::guard('api')->user(), $new);
+        }
 
         return new NewsResource($new);
     }

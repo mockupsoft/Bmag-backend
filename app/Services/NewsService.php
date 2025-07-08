@@ -27,4 +27,9 @@ class NewsService
     {
         return $this->newsRepository->getNew($id);
     }
+
+    public function readsUserForNews($user, $new): void
+    {
+        $this->newsRepository->readsUserForNews($user, $new);
+    }
 }

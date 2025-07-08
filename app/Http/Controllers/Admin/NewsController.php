@@ -9,6 +9,7 @@ use App\Models\Magazine;
 use App\Models\News;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
@@ -64,7 +65,10 @@ class NewsController extends Controller
     public function update(NewsStoreRequest $request, $newsId)
     {
         $news = News::query()->findOrFail($newsId);
-        $news->update(array_merge($request->all(), ['published_at' => $request->is_published == 1 ? Carbon::now() : null]));
+        $news->update(array_merge($request->all(), [
+            'published_at' => $request->is_published == 1 ? Carbon::now() : null,
+            'published_by' => Auth::user()->id
+        ]));
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');

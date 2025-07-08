@@ -5,14 +5,21 @@ namespace App\Repositories;
 use App\Models\Category;
 use App\Models\Magazine;
 use App\Models\News;
+use App\Models\UserNewsViews;
 
 class NewsRepository
 {
     private News $news;
+    private UserNewsViews $userNewsViews;
 
-    public function __construct(News $news)
+    /**
+     * @param News $news
+     * @param UserNewsViews $userNewsViews
+     */
+    public function __construct(News $news, UserNewsViews $userNewsViews)
     {
         $this->news = $news;
+        $this->userNewsViews = $userNewsViews;
     }
 
     public function getNewsForSlug($categorySlug, $magazineSlug)
@@ -41,11 +48,23 @@ class NewsRepository
 
     public function getNewForSlug($slug)
     {
-        return $this->news->query()->where('slug', $slug)->first();
+        return $this->news->query()->where('slug', $slug)->where('is_published', true)->first();
     }
 
     public function getNew($id)
     {
         return $this->news->query()->findOrFail($id);
+    }
+
+    public function readsUserForNews($user, $new): void
+    {
+        if (
+            !$this->userNewsViews->where([
+            'user_id' => $user->id,
+            'news_id' => $new->id
+        ])->exists()
+        ){
+            $this->userNewsViews->create(['user_id' => $user->id, 'news_id' => $new->id]);
+        }
     }
 }
