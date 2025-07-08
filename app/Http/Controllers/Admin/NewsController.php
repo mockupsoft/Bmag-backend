@@ -14,7 +14,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::all();
+        $news = News::query()->orderBy('created_at', 'DESC')->get();
         return view('admin.news.index', compact('news'));
     }
 
@@ -63,7 +63,7 @@ class NewsController extends Controller
     public function update(NewsStoreRequest $request, $newsId)
     {
         $news = News::query()->findOrFail($newsId);
-        $news->update(array_merge($request->all(), ['is_published' => 0]));
+        $news->update($request->all());
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
@@ -80,7 +80,7 @@ class NewsController extends Controller
             $news->save();
         }
 
-        session_success("Haber güncellendi ve onaya gönderildi.");
+        session_success("Haber güncellendi.");
         return redirect()->route('admin.news.index');
     }
 }

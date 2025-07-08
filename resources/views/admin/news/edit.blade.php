@@ -178,6 +178,13 @@
                                         @error('image')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
+                                        @if($news->image)
+                                            <div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" style="margin-top: 10px">
+                                                <img src="{{ $news->image }}" alt="">
+                                            </div>
+                                            <input type="checkbox" name="delete_cover_image" id="delete_cover_image">
+                                            <label for="delete_cover_image">Görseli sil</label>
+                                        @endif
                                     </div>
                                 </div>
                                 <!--end::Row-->
@@ -332,16 +339,5 @@
 @endsection
 
 @section('js')
-    <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 
-    <script>
-        CKEDITOR.replace('content', {
-            extraPlugins: 'uploadimage',
-            removeDialogTabs: 'image:advanced;link:advanced',
-
-            uploadImage: {
-                base64: true
-            }
-        });
-    </script>
 @endsection

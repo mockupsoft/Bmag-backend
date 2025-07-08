@@ -19,7 +19,6 @@ class NewsStoreRequest extends FormRequest
             'content'       => 'required|string',
             'category_id'   => 'nullable|integer|exists:categories,id',
             'magazine_id'   => 'nullable|integer|exists:magazines,id',
-            'is_published'  => 'nullable|boolean',
             'meta_robots'   => 'nullable|string|max:255',
             'image'         => 'nullable'
         ];

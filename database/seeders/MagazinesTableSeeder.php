@@ -38,23 +38,6 @@ class MagazinesTableSeeder extends Seeder
             ),
             1 => 
             array (
-                'id' => 2,
-                'name' => 'Form Sante',
-                'slug' => 'form-sante',
-                'description' => NULL,
-                'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/car_photos/17/20241013152303-670be5d79387d.jpg',
-                'meta_title' => NULL,
-                'meta_description' => NULL,
-                'meta_keywords' => NULL,
-                'canonical_url' => NULL,
-                'seo_image' => 'https://past-service.s3.eu-north-1.amazonaws.com/car_photos/17/20241013152303-670be5d79387d.jpg',
-                'robots' => 'index, follow',
-                'is_active' => 1,
-                'created_at' => NULL,
-                'updated_at' => NULL,
-            ),
-            2 => 
-            array (
                 'id' => 3,
                 'name' => 'Ceo Life',
                 'slug' => 'ceo-life',
@@ -70,7 +53,7 @@ class MagazinesTableSeeder extends Seeder
                 'created_at' => NULL,
                 'updated_at' => NULL,
             ),
-            3 => 
+            2 => 
             array (
                 'id' => 4,
                 'name' => 'Deneme dergisi',
@@ -86,6 +69,23 @@ class MagazinesTableSeeder extends Seeder
                 'is_active' => 1,
                 'created_at' => '2025-06-20 08:02:57',
                 'updated_at' => '2025-06-20 08:02:58',
+            ),
+            3 => 
+            array (
+                'id' => 8,
+                'name' => 'Formsante',
+                'slug' => 'formsante',
+                'description' => '<p>Formsante</p>',
+                'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1751959232.png',
+                'meta_title' => NULL,
+                'meta_description' => NULL,
+                'meta_keywords' => NULL,
+                'canonical_url' => NULL,
+                'seo_image' => NULL,
+                'robots' => 'index, follow',
+                'is_active' => 1,
+                'created_at' => '2025-07-08 07:20:32',
+                'updated_at' => '2025-07-08 07:20:33',
             ),
         ));
         

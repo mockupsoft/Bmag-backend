@@ -26,10 +26,10 @@ class Magazine extends Model
     protected static function booted()
     {
         static::creating(function ($magazine) {
-            $magazine->slug = Str::slug($magazine->title);
+            $magazine->slug = Str::slug($magazine->name);
             $originalSlug = $magazine->slug;
             $i = 1;
-            while (News::where('slug', $magazine->slug)->exists()) {
+            while (Magazine::where('slug', $magazine->slug)->exists()) {
                 $magazine->slug = $originalSlug . '-' . $i++;
             }
         });

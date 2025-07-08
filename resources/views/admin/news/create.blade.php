@@ -181,23 +181,6 @@
                                     </div>
                                 </div>
                                 <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3">Durum</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9">
-                                        <select name="status" id="status_id" class="form-control form-control-solid">
-                                            <option value="1" @selected(old('status') == 1)>Aktif</option>
-                                            <option value="2" @selected(old('status') == 2)>Pasif</option>
-                                        </select>
-                                    </div>
-                                    <!--end::Col-->
-                                </div>
-                                <!--end::Row-->
                             </div>
                             <!--end::Card body-->
                             <!--end:Form-->
@@ -332,16 +315,5 @@
 @endsection
 
 @section('js')
-    <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 
-    <script>
-        CKEDITOR.replace('content', {
-            extraPlugins: 'uploadimage',
-            removeDialogTabs: 'image:advanced;link:advanced',
-
-            uploadImage: {
-                base64: true
-            }
-        });
-    </script>
 @endsection
