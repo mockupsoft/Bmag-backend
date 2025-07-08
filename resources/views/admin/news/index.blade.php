@@ -67,6 +67,7 @@
                                     <th class="min-w-200px">Başlık</th>
                                     <th class="text-end min-w-100px">Yayın Durumu</th>
                                     <th class="text-end min-w-100px">Yayın Tarihi</th>
+                                    <th class="text-end min-w-100px">Dergi</th>
                                     <th class="text-end min-w-70px">Eylemler</th>
                                 </tr>
                                 </thead>
@@ -85,7 +86,10 @@
                                             {{ $new->is_published ? 'Aktif' : 'Pasif' }}
                                         </td>
                                         <td class="text-end">
-                                            {{ $new->published_at }}
+                                            {{ $new->published_at ? \Carbon\Carbon::parse($new->published_at)->translatedFormat('j M Y H:i') : 'Yayında değil' }}
+                                        </td>
+                                        <td class="text-end">
+                                            {{ $new->magazine->name }}
                                         </td>
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Eylemler

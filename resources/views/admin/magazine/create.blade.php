@@ -257,16 +257,5 @@
 @endsection
 
 @section('js')
-    <script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 
-    <script>
-        CKEDITOR.replace('description', {
-            extraPlugins: 'uploadimage',
-            removeDialogTabs: 'image:advanced;link:advanced',
-
-            uploadImage: {
-                base64: true
-            }
-        });
-    </script>
 @endsection

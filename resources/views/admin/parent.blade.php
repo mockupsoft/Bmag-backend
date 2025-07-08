@@ -4132,7 +4132,7 @@ License: For each use you must have a valid license purchased only from above li
 
 <script>
     $(document).ready(function() {
-        $('#content').summernote({
+        $('#content, #description').summernote({
             height: 500  // editör yüksekliği
         });
     });

@@ -197,7 +197,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9">
-                                        <select name="is_published" id="status_id" class="form-control form-control-solid">
+                                        <select name="is_published" id="is_published_id" class="form-control form-control-solid">
                                             <option value="1" @selected(old('is_published') ? old('is_published') == 1 : $news->is_published == 1)>Aktif</option>
                                             <option value="0" @selected(old('is_published') ? old('is_published') == 0 : $news->is_published == 0)>Pasif</option>
                                         </select>
