@@ -32,6 +32,7 @@ Route::get('get-categories', [CategoryController::class, 'getCategories']);
 Route::get('get-news', [NewsController::class, 'getNews']);
 Route::get('{newSlug}/get-new', [NewsController::class, 'getNew']);
 Route::get('{categorySlug}/get-news-for-category', [NewsController::class, 'getNewsForCategory']);
+Route::get('trend-news', [NewsController::class, 'getTrendNews']);
 
 Route::get('get-magazines', [MagazineController::class, 'getMagazines']);
 Route::get('{magazineSlug}/get-magazine', [MagazineController::class, 'getMagazine']);

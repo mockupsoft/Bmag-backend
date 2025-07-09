@@ -32,4 +32,9 @@ class NewsService
     {
         $this->newsRepository->readsUserForNews($user, $new);
     }
+
+    public function getTrendNews()
+    {
+        return $this->newsRepository->getTrendNews();
+    }
 }

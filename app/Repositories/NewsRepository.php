@@ -67,4 +67,13 @@ class NewsRepository
             $this->userNewsViews->create(['user_id' => $user->id, 'news_id' => $new->id]);
         }
     }
+
+    public function getTrendNews()
+    {
+        return $this->news->query()
+            ->where('is_published', true)
+            ->where('viewed', '>', 0)
+            ->orderBy('viewed', 'ASC')
+            ->get();
+    }
 }

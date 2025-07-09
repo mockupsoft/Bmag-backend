@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\MagazineIssueController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\RollCommentController;
 use App\Http\Controllers\Admin\RollController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserGroupController;
 use Illuminate\Support\Facades\Route;
@@ -97,6 +98,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('store', [RollCommentController::class, 'store'])->name('store');
         Route::get('{rollComment}/edit', [RollCommentController::class, 'edit'])->name('edit');
         Route::post('{rollComment}/update', [RollCommentController::class, 'update'])->name('update');
+    });
+
+    Route::group(['as' => 'settings.', 'prefix' => 'settings'], function () {
+        Route::get('edit', [SettingController::class, 'edit'])->name('edit');
+        Route::post('update', [SettingController::class, 'update'])->name('update');
     });
 });
 

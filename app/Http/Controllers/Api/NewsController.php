@@ -118,4 +118,11 @@ class NewsController extends Controller
 
         return new MagazineCollection($magazines);
     }
+
+    public function getTrendNews()
+    {
+        $trendNews = $this->newsService->getTrendNews();
+
+        return new NewsCollection($trendNews);
+    }
 }

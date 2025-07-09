@@ -25,6 +25,7 @@ class NewsResource extends JsonResource
                 'slug' => $this->magazine?->slug
             ],
             'is_published' => $this->is_published,
+            'viewed' => $this->viewed,
             'published_at' => $this->published_at,
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,
