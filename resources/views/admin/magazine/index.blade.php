@@ -77,7 +77,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ $magazine->name }}</a>
+                                            <span class="text-gray-800 fs-5 fw-bold">{{ $magazine->name }}</span>
                                         </td>
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Eylemler
@@ -99,11 +99,6 @@
                                                     <a href="{{ route('admin.magazine.edit', $magazine) }}" class="menu-link px-3">Düzenle</a>
                                                 </div>
                                                 <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row">Delete</a>
-                                                </div>
-                                                <!--end::Menu item-->
                                             </div>
                                             <!--end::Menu-->
                                         </td>
@@ -122,5 +117,26 @@
             <!--end::Content-->
         </div>
         <!--end::Content wrapper-->
+        <!--begin::Footer-->
+        <div id="kt_app_footer" class="app-footer">
+            <!--begin::Footer container-->
+            <div class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
+                <!--begin::Copyright-->
+                <div class="text-gray-900 order-2 order-md-1">
+                    <span class="text-muted fw-semibold me-1">2024&copy;</span>
+                    <a href="javascript:void(0);" class="text-gray-800 text-hover-primary">Big Medya</a>
+                </div>
+                <!--end::Copyright-->
+                <!--begin::Menu-->
+                <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" onclick="alert('Yakında')" class="menu-link px-2">Destek</a>
+                    </li>
+                </ul>
+                <!--end::Menu-->
+            </div>
+            <!--end::Footer container-->
+        </div>
+        <!--end::Footer-->
     </div>
 @endsection

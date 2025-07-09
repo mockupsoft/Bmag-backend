@@ -130,13 +130,13 @@
                 <!--begin::Copyright-->
                 <div class="text-gray-900 order-2 order-md-1">
                     <span class="text-muted fw-semibold me-1">2024&copy;</span>
-                    <a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">Big Medya</a>
+                    <a href="javascript:void(0);" class="text-gray-800 text-hover-primary">Big Medya</a>
                 </div>
                 <!--end::Copyright-->
                 <!--begin::Menu-->
                 <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
                     <li class="menu-item">
-                        <a href="" target="_blank" class="menu-link px-2">Deneme</a>
+                        <a href="javascript:void(0);" onclick="alert('Yakında')" class="menu-link px-2">Destek</a>
                     </li>
                 </ul>
                 <!--end::Menu-->

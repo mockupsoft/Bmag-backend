@@ -88,14 +88,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('{magazine}/index', [RollController::class, 'index'])->name('index');
         Route::get('{magazine}/create', [RollController::class, 'create'])->name('create');
         Route::post('{magazine}/store', [RollController::class, 'store'])->name('store');
-        Route::get('{roll}/edit', [RollController::class, 'edit'])->name('edit');
-        Route::post('{roll}/update', [RollController::class, 'update'])->name('update');
     });
 
     Route::group(['as' => 'roll-comments.', 'prefix' => 'roll-comments'], function () {
         Route::get('index', [RollCommentController::class, 'index'])->name('index');
-        Route::get('create', [RollCommentController::class, 'create'])->name('create');
-        Route::post('store', [RollCommentController::class, 'store'])->name('store');
         Route::get('{rollComment}/edit', [RollCommentController::class, 'edit'])->name('edit');
         Route::post('{rollComment}/update', [RollCommentController::class, 'update'])->name('update');
     });
