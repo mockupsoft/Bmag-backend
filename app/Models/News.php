@@ -17,6 +17,7 @@ class News extends Model
         "content",
         "image",
         "is_published",
+        "viewed",
         "published_at",
         "published_by",
         "category_id",

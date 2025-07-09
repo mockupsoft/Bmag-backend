@@ -12,6 +12,7 @@ use App\Models\UserFavorite;
 use App\Services\NewsService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class NewsController extends Controller
 {
@@ -39,6 +40,13 @@ class NewsController extends Controller
 
         if (Auth::guard('api')->check()) {
             $this->newsService->readsUserForNews(Auth::guard('api')->user(), $new);
+        }
+
+        $key = 'news_viewed_' . $new->id . '_' . request()->ip();
+
+        if (!Cache::has($key)) {
+            $new->increment('viewed');
+            Cache::put($key, true, now()->addMinutes(10));
         }
 
         return new NewsResource($new);
