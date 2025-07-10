@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\MagazineController;
 use App\Http\Controllers\Admin\MagazineIssueController;
 use App\Http\Controllers\Admin\NewsController;
@@ -99,6 +100,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['as' => 'settings.', 'prefix' => 'settings'], function () {
         Route::get('edit', [SettingController::class, 'edit'])->name('edit');
         Route::post('update', [SettingController::class, 'update'])->name('update');
+    });
+
+    Route::group(['as' => 'file.', 'prefix' => 'file'], function () {
+        Route::get('index', [FileController::class, 'index'])->name('index');
+        Route::get('create', [FileController::class, 'create'])->name('create');
+        Route::post('store', [FileController::class, 'store'])->name('store');
+        Route::get('{file}/edit', [FileController::class, 'edit'])->name('edit');
+        Route::post('{file}/update', [FileController::class, 'update'])->name('update');
     });
 });
 

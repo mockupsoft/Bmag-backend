@@ -218,7 +218,7 @@
                     </div>
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
-                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(in_array($page, ['user', 'role'])) hover show @endif">
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(in_array($page, ['settings', 'file'])) hover show @endif">
                         <!--begin:Menu link-->
                         <span class="menu-link">
                             <span class="menu-icon">
@@ -238,6 +238,18 @@
                             <div class="menu-item @if($page == "settings") hover @endif">
                                 <!--begin:Menu link-->
                                 <a class="menu-link" href="{{ route('admin.settings.edit') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Genel Ayarlar</span>
+                                </a>
+                                <!--end:Menu link-->
+                            </div>
+                            <!--end:Menu item-->
+                            <!--begin:Menu item-->
+                            <div class="menu-item @if($page == "file") hover @endif">
+                                <!--begin:Menu link-->
+                                <a class="menu-link" href="{{ route('admin.file.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
