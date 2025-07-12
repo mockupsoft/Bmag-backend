@@ -23,18 +23,20 @@ class FileController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
 
-            Storage::disk('s3')->put(
-                'bmag/' . $fileName,
-                file_get_contents($file),
-                'public'
-            );
+                Storage::disk('s3')->put(
+                    'bmag/' . $fileName,
+                    file_get_contents($file),
+                    'public'
+                );
 
-            $url = Storage::disk('s3')->url('bmag/' . $fileName);
-            File::query()->create(['path' => $url]);
+                $url = Storage::disk('s3')->url('bmag/' . $fileName);
+                File::query()->create(['path' => $url]);
+                sleep(1);
+            }
         }
 
         session_success("Dosya yüklendi.");

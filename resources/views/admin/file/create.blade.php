@@ -80,7 +80,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="file" class="form-control form-control-solid" name="file" />
+                                        <input type="file" class="form-control form-control-solid" name="files[]" multiple />
                                         @error('file')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror

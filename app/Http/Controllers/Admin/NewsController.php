@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\NewsStoreRequest;
+use App\Http\Requests\Admin\NewsUpdateRequest;
 use App\Models\Category;
 use App\Models\Magazine;
 use App\Models\News;
@@ -62,7 +63,7 @@ class NewsController extends Controller
         return view('admin.news.edit', compact('news', 'categories', 'magazines'));
     }
 
-    public function update(NewsStoreRequest $request, $newsId)
+    public function update(NewsUpdateRequest $request, $newsId)
     {
         $news = News::query()->findOrFail($newsId);
         $news->update(array_merge($request->all(), [

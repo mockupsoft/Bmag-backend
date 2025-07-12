@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewsStoreRequest extends FormRequest
+class NewsUpdateRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -17,9 +17,10 @@ class NewsStoreRequest extends FormRequest
             'title'         => 'required|string|max:255',
             'summary'       => 'required|string|max:1000',
             'content'       => 'required|string',
-            'category_id'   => 'required|integer|exists:categories,id',
-            'magazine_id'   => 'required|integer|exists:magazines,id',
-            'image'         => 'required'
+            'category_id'   => 'nullable|integer|exists:categories,id',
+            'magazine_id'   => 'nullable|integer|exists:magazines,id',
+            'meta_robots'   => 'nullable|string|max:255',
+            'image'         => 'nullable'
         ];
     }
 
@@ -28,10 +29,7 @@ class NewsStoreRequest extends FormRequest
         return [
             'title.required' => 'Başlık alanı zorunludur.',
             'summary.required' => 'Özet alanı zorunludur.',
-            'content.required' => 'İçerik alanı zorunludur.',
-            'image.required' => 'Resim alanı zorunludur.',
-            'category_id.required' => 'Kategori alanı zorunludur.',
-            'magazine_id.required' => 'Degi alanı zorunludur.',
+            'content.required' => 'İçerik alanı zorunludur.'
         ];
     }
 }

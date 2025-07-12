@@ -253,7 +253,7 @@
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">Genel Ayarlar</span>
+                                    <span class="menu-title">Dosya Yöneticisi</span>
                                 </a>
                                 <!--end:Menu link-->
                             </div>
