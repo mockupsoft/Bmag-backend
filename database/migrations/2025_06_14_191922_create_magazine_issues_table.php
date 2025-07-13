@@ -11,7 +11,7 @@ class CreateMagazineIssuesTable extends Migration
         Schema::create('magazine_issues', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('magazine_id');
-            $table->date('issue_date')->nullable();
+            $table->string('issue_month')->nullable();
             $table->text('description');
             $table->integer('issue_code');
             $table->text('cover_image')->nullable();

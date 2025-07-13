@@ -11,9 +11,13 @@ class MagazineIssueResource extends JsonResource
     {
         return [
             'id'           => $this->id,
-            'magazine_id'  => $this->magazine_id,
-            'issue_number' => $this->issue_number,
-            'issue_date'   => $this->issue_date,
+            'magazine' => [
+                'name' => $this->magazine?->name,
+                'slug' => $this->magazine?->slug,
+                'logo' => $this->magazine?->image
+            ],
+            'issue_code'   => $this->issue_code,
+            'issue_month'  => $this->issue_month,
             'cover_image'  => $this->cover_image,
             'pdf_path'     => $this->pdf_path,
             'barcode'      => $this->barcode,

@@ -36,7 +36,7 @@ Route::get('trend-news', [NewsController::class, 'getTrendNews']);
 
 Route::get('get-magazines', [MagazineController::class, 'getMagazines']);
 Route::get('{magazineSlug}/get-magazine', [MagazineController::class, 'getMagazine']);
-Route::get('{magazineIssueIssueDate}/get-magazine-issue', [MagazineController::class, 'getMagazineIssue']);
+Route::get('{magazineSlug}/{magazineIssueIssueMonth}/get-magazine-issue', [MagazineController::class, 'getMagazineIssue']);
 Route::get('{magazineSlug}/get-news-for-magazine', [NewsController::class, 'getNewsForMagazine']);
 Route::get('{magazineSlug}/get-magazine-issues', [MagazineController::class, 'getMagazineIssues']);
 Route::get('{magazineSlug}/get-magazine-news', [MagazineController::class, 'getMagazineNews']);

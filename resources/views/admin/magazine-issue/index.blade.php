@@ -78,7 +78,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ \Carbon\Carbon::parse($magazineIssue->issue_date)->translatedFormat('j F Y') }}</span>
+                                            <span class="text-gray-800 text-hover-primary fs-5 fw-bold">{{ \Carbon\Carbon::parse($magazineIssue->issue_month)->translatedFormat('F Y') }}</span>
                                         </td>
                                         <td>
                                             <span class="text-gray-800 fs-5 fw-bold">{{ $magazineIssue->magazine->name }}</span>

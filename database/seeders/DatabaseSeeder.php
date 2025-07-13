@@ -38,5 +38,13 @@ class DatabaseSeeder extends Seeder
         $this->call(SubscribersTableSeeder::class);
         $this->call(UserFavoritesTableSeeder::class);
         $this->call(SettingSeeder::class);
+        $this->call(ContactFormsTableSeeder::class);
+        $this->call(FilesTableSeeder::class);
+        $this->call(RollCommentsTableSeeder::class);
+        $this->call(RollLikesTableSeeder::class);
+        $this->call(RollViewsTableSeeder::class);
+        $this->call(RollsTableSeeder::class);
+        $this->call(SettingsTableSeeder::class);
+        $this->call(UserNewsViewsTableSeeder::class);
     }
 }

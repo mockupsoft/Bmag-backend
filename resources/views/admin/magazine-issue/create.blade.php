@@ -105,12 +105,26 @@
                                 <div class="row mb-8">
                                     <!--begin::Col-->
                                     <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Dergi Tarihi</div>
+                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Dergi Ayı</div>
                                     </div>
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="date" class="form-control form-control-solid @error('issue_date') is-invalid @enderror" name="issue_date" value="{{ old('issue_date') }}" />
+                                        <select name="issue_month" id="issue_month_id" class="form-control">
+                                            <option value="">Seçiniz</option>
+                                            <option value="01">Ocak</option>
+                                            <option value="02">Şubat</option>
+                                            <option value="03">Mart</option>
+                                            <option value="04">Nisan</option>
+                                            <option value="05">Mayıs</option>
+                                            <option value="06">Haziran</option>
+                                            <option value="07">Temmuz</option>
+                                            <option value="08">Ağustos</option>
+                                            <option value="09">Eylül</option>
+                                            <option value="10">Ekim</option>
+                                            <option value="11">Kasım</option>
+                                            <option value="12">Aralık</option>
+                                        </select>
                                         @error('issue_date')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror

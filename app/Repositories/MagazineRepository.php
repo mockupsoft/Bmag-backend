@@ -40,8 +40,8 @@ class MagazineRepository
         return $this->magazineIssue->query()->where('slug', $magazineIssueSlug)->first();
     }
 
-    public function getMagazineIssueForIssueDate($magazineIssueIssueDate)
+    public function getMagazineIssueForIssueMonth($magazine, $magazineIssueIssueMonth)
     {
-        return $this->magazineIssue->query()->where('issue_date', $magazineIssueIssueDate)->first();
+        return $this->magazineIssue->query()->where('magazine_id', $magazine->id)->where('issue_month', $magazineIssueIssueMonth)->first();
     }
 }

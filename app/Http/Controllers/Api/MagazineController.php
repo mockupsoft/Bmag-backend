@@ -34,9 +34,10 @@ class MagazineController extends Controller
         return new MagazineResource($magazine);
     }
 
-    public function getMagazineIssue($magazineIssueIssueDate)
+    public function getMagazineIssue($magazineSlug, $magazineIssueIssueMonth)
     {
-        $magazineIssue = $this->magazineService->getMagazineIssueForIssueDate($magazineIssueIssueDate);
+        $magazine = $this->magazineService->getMagazineForSlug($magazineSlug);
+        $magazineIssue = $this->magazineService->getMagazineIssueForIssueMonth($magazine, $magazineIssueIssueMonth);
         return new MagazineIssueResource($magazineIssue);
     }
 

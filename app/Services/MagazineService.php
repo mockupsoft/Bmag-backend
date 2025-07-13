@@ -33,8 +33,8 @@ class MagazineService
         return $this->magazineRepository->getMagazineIssue($magazineIssueSlug);
     }
 
-    public function getMagazineIssueForIssueDate($magazineIssueIssueDate)
+    public function getMagazineIssueForIssueMonth($magazine, $magazineIssueIssueMonth)
     {
-        return $this->magazineRepository->getMagazineIssueForIssueDate($magazineIssueIssueDate);
+        return $this->magazineRepository->getMagazineIssueForIssueMonth($magazine, $magazineIssueIssueMonth);
     }
 }

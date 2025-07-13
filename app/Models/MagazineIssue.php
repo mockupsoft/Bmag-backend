@@ -12,7 +12,7 @@ class MagazineIssue extends Model
 
     protected $fillable = [
         "magazine_id",
-        "issue_date",
+        "issue_month",
         "description",
         "issue_code",
         "cover_image",
