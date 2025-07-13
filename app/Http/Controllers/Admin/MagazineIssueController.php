@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\MagazineIssueUpdateRequest;
 use App\Models\Magazine;
 use App\Models\MagazineIssue;
 use App\Traits\Uploadable;
+use Carbon\Carbon;
 
 class MagazineIssueController extends Controller
 {
@@ -27,8 +28,7 @@ class MagazineIssueController extends Controller
 
     public function store(Magazine $magazine, MagazineIssueStoreRequest $request)
     {
-
-        $magazineIssue = MagazineIssue::query()->create(array_merge($request->validated(), ['magazine_id' => $magazine->id]));
+        $magazineIssue = MagazineIssue::query()->create(array_merge($request->validated(), ['magazine_id' => $magazine->id, 'issue_month' => Carbon::now()->format('Y').'-'.$request->issue_month]));
 
         if($request->hasFile('cover_image')){
             $magazineIssue->cover_image = $this->uploadToS3($request->file('cover_image'), 'bmag');

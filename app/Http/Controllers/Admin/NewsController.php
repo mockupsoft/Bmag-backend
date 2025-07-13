@@ -28,8 +28,9 @@ class NewsController extends Controller
         return view('admin.news.create', compact('categories', 'magazines'));
     }
 
-    public function store(NewsStoreRequest $request)
+    public function store(Request $request)
     {
+        dd($request->all());
         $news = News::query()->create($request->validated());
 
         $file = $request->file('image');

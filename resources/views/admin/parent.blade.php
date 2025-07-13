@@ -3458,7 +3458,20 @@ License: For each use you must have a valid license purchased only from above li
 <script>
     $(document).ready(function() {
         $('#content, #description').summernote({
-            height: 500  // editör yüksekliği
+            height: 500,
+            callbacks: {
+                onPaste: function (e) {
+                    e.preventDefault();
+                    const clipboardData = ((e.originalEvent || e).clipboardData);
+                    const pastedData = clipboardData.getData('text/html') || clipboardData.getData('text/plain');
+
+                    const $div = $('<div>').html(pastedData);
+                    $div.find('[style]').removeAttr('style');
+                    $div.find('font').contents().unwrap();
+
+                    document.execCommand('insertHTML', false, $div.html());
+                }
+            }
         });
     });
 </script>
