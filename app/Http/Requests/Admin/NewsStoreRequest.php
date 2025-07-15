@@ -14,15 +14,16 @@ class NewsStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'in_title'         => 'required|string|max:255',
-            'out_title'         => 'required|string|max:255',
-            'summary'       => 'required|string|max:1000',
-            'content'       => 'required|string',
-            'category_id'   => 'required|integer|exists:categories,id',
-            'magazine_id'   => 'required|integer|exists:magazines,id',
-            'large_image'         => 'required',
-            'news_detail_image'         => 'required',
-            'list_image'         => 'required'
+            'in_title' => 'required|string|max:255',
+            'out_title' => 'required|string|max:255',
+            'summary' => 'required|string|max:1000',
+            'content' => 'required|string',
+            'category_id' => 'required|integer|exists:categories,id',
+            'magazine_id' => 'required|integer|exists:magazines,id',
+            'large_image' => 'required',
+            'news_detail_image' => 'required',
+            'list_image' => 'required',
+            'tags' => 'nullable'
         ];
     }
 

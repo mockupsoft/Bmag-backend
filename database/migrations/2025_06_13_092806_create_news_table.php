@@ -26,6 +26,7 @@ class CreateNewsTable extends Migration
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
+            $table->text('tags')->nullable();
             $table->string('robots')->default('index, follow');
             $table->timestamps();
         });

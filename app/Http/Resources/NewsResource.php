@@ -11,11 +11,14 @@ class NewsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
+            'in_title' => $this->in_title,
+            'out_title' => $this->out_title,
             'slug' => $this->slug,
             'summary' => $this->summary,
             'content' => $this->content,
-            'image' => $this->image,
+            'large_image' => $this->large_image,
+            'news_detail_image' => $this->news_detail_image,
+            'list_image' => $this->list_image,
             'category' => [
                 'name' => $this->category->name,
                 'slug' => $this->category->slug
@@ -31,6 +34,7 @@ class NewsResource extends JsonResource
             'meta_title' => $this->meta_title,
             'meta_description' => $this->meta_description,
             'meta_keywords' => $this->meta_keywords,
+            'tags' => $this->tags,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

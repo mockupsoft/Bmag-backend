@@ -360,6 +360,17 @@
                                                 @enderror
                                             </div>
                                         </div>
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <div class="col-md-12">
+                                                <!--begin::Col-->
+                                                <div class="fv-row">
+                                                    <label class="form-label">Etiketler</label>
+                                                    <input class="form-control" name="tags" value="{{ $news->tags }}" id="kt_tagify_1"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
                                     </div>
                                     <!--end::Card body-->
                                     <!--end:Form-->
@@ -399,5 +410,10 @@
 @endsection
 
 @section('js')
-
+    <script>
+        var input1 = document.querySelector("#kt_tagify_1");
+        const tagify = new Tagify(input1, {
+            originalInputValueFormat: valuesArr => valuesArr.map(item => item.value).join(',')
+        });
+    </script>
 @endsection

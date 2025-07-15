@@ -16,7 +16,8 @@ class GeneralController extends Controller
             ->where(function ($query) use ($keyword) {
                 $query->where('title', 'like', "%{$keyword}%")
                     ->orWhere('summary', 'like', "%{$keyword}%")
-                    ->orWhere('content', 'like', "%{$keyword}%");
+                    ->orWhere('content', 'like', "%{$keyword}%")
+                    ->orWhere('tags', 'like', "%{$keyword}%");
             })
             ->get();
 

@@ -14,15 +14,16 @@ class NewsUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'in_title'         => 'required|string|max:255',
-            'out_title'         => 'required|string|max:255',
-            'summary'       => 'required|string|max:1000',
-            'content'       => 'required|string',
-            'category_id'   => 'required|integer|exists:categories,id',
-            'magazine_id'   => 'required|integer|exists:magazines,id',
-            'large_image'         => 'nullable',
-            'news_detail_image'         => 'nullable',
-            'list_image'         => 'nullable'
+            'in_title' => 'required|string|max:255',
+            'out_title' => 'required|string|max:255',
+            'summary' => 'required|string|max:1000',
+            'content' => 'required|string',
+            'category_id' => 'required|integer|exists:categories,id',
+            'magazine_id' => 'required|integer|exists:magazines,id',
+            'large_image' => 'nullable',
+            'news_detail_image' => 'nullable',
+            'list_image' => 'nullable',
+            'tags' => 'nullable'
         ];
     }
 
