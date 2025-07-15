@@ -80,7 +80,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="text-gray-800 fs-5 fw-bold">{{ $new->title }}</span>
+                                            <span class="text-gray-800 fs-5 fw-bold">{{ $new->in_title }}</span>
                                         </td>
                                         <td class="text-end">
                                             {{ $new->is_published ? 'Aktif' : 'Pasif' }}

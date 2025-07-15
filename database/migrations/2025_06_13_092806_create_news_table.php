@@ -10,20 +10,23 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('title'); // Haber başlığı
-            $table->string('slug')->unique(); // SEO dostu URL
-            $table->text('summary')->nullable(); // Kısa özet
-            $table->longText('content'); // Tam içerik
-            $table->text('image')->nullable(); // Kapak görseli
-            $table->boolean('is_published')->default(false); // Yayın durumu
-            $table->timestamp('published_at')->nullable(); // Yayın tarihi
+            $table->string('in_title');
+            $table->string('out_title');
+            $table->string('slug')->unique();
+            $table->text('summary')->nullable();
+            $table->longText('content');
+            $table->text('large_image')->nullable();
+            $table->text('news_detail_image')->nullable();
+            $table->text('list_image')->nullable();
+            $table->boolean('is_published')->default(false);
+            $table->timestamp('published_at')->nullable();
             $table->unsignedBigInteger('published_by')->nullable();
-            $table->unsignedBigInteger('category_id')->nullable(); // Kategori (eğer kategoriler varsa)
+            $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('magazine_id')->nullable();
-            $table->string('meta_title')->nullable(); // SEO başlığı
-            $table->string('meta_description')->nullable(); // SEO açıklaması
-            $table->string('meta_keywords')->nullable(); // SEO anahtar kelimeleri
-            $table->string('robots')->default('index, follow'); // Arama motoru direktifleri
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keywords')->nullable();
+            $table->string('robots')->default('index, follow');
             $table->timestamps();
         });
     }

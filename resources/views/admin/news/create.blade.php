@@ -63,220 +63,277 @@
                 <div id="kt_app_content_container" class="app-container container-xxl">
                     <form class="form" method="POST" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
                         @csrf
-                        <!--begin::Card-->
-                        <div class="card">
-                            <!--begin::Card header-->
-                            <div class="card-header">
-                                <!--begin::Card title-->
-                                <div class="card-title fs-3 fw-bold">Genel Bilgiler</div>
-                                <!--end::Card title-->
+                        <div class="row">
+                            <div class="col-md-9">
+                                <!--begin::Card-->
+                                <div class="card">
+                                    <!--begin::Card header-->
+                                    <div class="card-header">
+                                        <!--begin::Card title-->
+                                        <div class="card-title fs-3 fw-bold">Genel Bilgiler</div>
+                                        <!--end::Card title-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Form-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-9">
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <!--begin::Col-->
+                                            <div class="fv-row">
+                                                <label for="" class="form-label required">İç Başlık</label>
+                                                <input type="text" class="form-control form-control-solid @error('in_title') is-invalid @enderror" name="in_title" value="{{ old('in_title') }}" />
+                                                @error('in_title')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <!--begin::Col-->
+                                            <div class="fv-row">
+                                                <label for="" class="form-label required">Dış Başlık</label>
+                                                <input type="text" class="form-control form-control-solid @error('out_title') is-invalid @enderror" name="out_title" value="{{ old('out_title') }}" />
+                                                @error('out_title')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <!--begin::Col-->
+                                            <div class="fv-row">
+                                                <label for="" class="form-label required">Kısa Özet</label>
+                                                <textarea name="summary" id="" cols="30" rows="5" class="form-control form-control-solid @error('summary') is-invalid @enderror" style="resize: none">{!! old('summary') !!}</textarea>
+                                                @error('summary')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <!--begin::Col-->
+                                            <div class="fv-row">
+                                                <label for="" class="form-label required">İçerik</label>
+                                                <textarea name="content" id="content" cols="30" rows="10" class="form-control form-control-solid @error('content') is-invalid @enderror" style="resize: none">{!! old('content') !!}</textarea>
+                                                @error('content')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
+                                    </div>
+                                    <!--end::Card body-->
+                                    <!--end:Form-->
+                                </div>
+                                <!--end::Card-->
+                                <!--begin::Card-->
+                                <div class="card"  style="margin-top: 35px">
+                                    <!--begin::Card header-->
+                                    <div class="card-header">
+                                        <!--begin::Card title-->
+                                        <div class="card-title fs-3 fw-bold">Görseller</div>
+                                        <!--end::Card title-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Form-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-9">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="fv-row">
+                                                    <label for="" class="form-label required">Büyük Görsel (1300 x 720)</label>
+                                                    <input type="file" class="form-control" name="large_image">
+                                                    @error('large_image')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="fv-row">
+                                                    <label for="" class="form-label required">Haber Detay Görseli (650 x 360)</label>
+                                                    <input type="file" class="form-control" name="news_detail_image">
+                                                    @error('news_detail_image')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="fv-row">
+                                                    <label for="" class="form-label required">Liste Görseli (426 x 240)</label>
+                                                    <input type="file" class="form-control" name="list_image">
+                                                    @error('list_image')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--end::Card body-->
+                                    <!--end:Form-->
+                                </div>
+                                <!--end::Card-->
+                                <!--begin::Card-->
+                                <div class="card" style="margin-top: 35px">
+                                    <!--begin::Card header-->
+                                    <div class="card-header">
+                                        <!--begin::Card title-->
+                                        <div class="card-title fs-3 fw-bold">Meta Bilgileri</div>
+                                        <!--end::Card title-->
+                                    </div>
+                                    <!--end::Card header-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-9">
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <!--begin::Col-->
+                                            <div class="col-xl-3">
+                                                <div class="fs-6 fw-semibold mt-2 mb-3">Başlık (Meta Title)</div>
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+                                            <div class="col-xl-9 fv-row">
+                                                <input type="text" class="form-control form-control-solid @error('meta_title') is-invalid @enderror" name="meta_title" value="{{ old('meta_title') }}" />
+                                                @error('meta_title')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <!--begin::Col-->
+                                            <div class="col-xl-3">
+                                                <div class="fs-6 fw-semibold mt-2 mb-3">Açıklama (Meta Description)</div>
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+                                            <div class="col-xl-9 fv-row">
+                                                <input type="text" class="form-control form-control-solid @error('meta_description') is-invalid @enderror" name="meta_description" value="{{ old('meta_description') }}" />
+                                                @error('meta_description')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <!--begin::Col-->
+                                            <div class="col-xl-3">
+                                                <div class="fs-6 fw-semibold mt-2 mb-3">Anahtar Kelimeler (Meta Keywords)</div>
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+                                            <div class="col-xl-9 fv-row">
+                                                <input type="text" class="form-control form-control-solid @error('meta_keywords') is-invalid @enderror" name="meta_keywords" value="{{ old('meta_keywords') }}" />
+                                                @error('meta_keywords')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <!--begin::Col-->
+                                            <div class="col-xl-3">
+                                                <div class="fs-6 fw-semibold mt-2 mb-3">Meta Robots</div>
+                                            </div>
+                                            <!--end::Col-->
+                                            <!--begin::Col-->
+                                            <div class="col-xl-9 fv-row">
+                                                <select name="meta_robots" id="meta_robots_id" class="form-control form-control-solid">
+                                                    <option value="">Seçiniz</option>
+                                                    <option value="index, robots" @selected(old('meta_robots') === "index, robots")>index, robots</option>
+                                                    <option value="noindex, follow" @selected(old('meta_robots') === "noindex, follow")>noindex, follow</option>
+                                                    <option value="noindex, nofollow" @selected(old('meta_robots') === "noindex, nofollow")>noindex, nofollow</option>
+                                                </select>
+                                                @error('meta_robots')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
+                                    </div>
+                                    <!--end::Card body-->
+                                    <!--begin::Card footer-->
+                                    <div class="card-footer d-flex justify-content-end py-6 px-9">
+                                        <a href="{{ route('admin.news.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
+                                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                                    </div>
+                                    <!--end::Card footer-->
+                                    <!--end:Form-->
+                                </div>
+                                <!--end::Card-->
                             </div>
-                            <!--end::Card header-->
-                            <!--begin::Form-->
-                            <!--begin::Card body-->
-                            <div class="card-body p-9">
-                                <!--begin::Row-->
-                                <div class="row mb-8">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Başlık</div>
+                            <div class="col-md-3">
+                                <!--begin::Card-->
+                                <div class="card">
+                                    <!--begin::Card header-->
+                                    <div class="card-header">
+                                        <!--begin::Card title-->
+                                        <div class="card-title fs-3 fw-bold">Genel Bilgiler</div>
+                                        <!--end::Card title-->
                                     </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" />
-                                        @error('title')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
+                                    <!--end::Card header-->
+                                    <!--begin::Form-->
+                                    <!--begin::Card body-->
+                                    <div class="card-body p-9">
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <!--begin::Col-->
+                                            <div class="fv-row">
+                                                <label for="" class="form-label required">Yayın Zamanı</label>
+                                                <input type="date" class="form-control">
+                                                @error('title')
+                                                <small class="text-danger">{{ $message }}</small>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
+                                        <!--begin::Row-->
+                                        <div class="row mb-8">
+                                            <div class="col-md-6">
+                                                <!--begin::Col-->
+                                                <div class="fv-row">
+                                                    <label for="" class="form-label required">Kategori</label>
+                                                    <select name="category_id" id="category_id" class="form-control form-control-solid">
+                                                        <option value="">Seçiniz</option>
+                                                        @foreach($categories as $category)
+                                                            <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('category_id')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <!--begin::Col-->
+                                                <div class="fv-row">
+                                                    <label for="" class="form-label required">Dergi</label>
+                                                    <select name="magazine_id" id="magazine_id" class="form-control form-control-solid">
+                                                        <option value="">Seçiniz</option>
+                                                        @foreach($magazines as $magazine)
+                                                            <option value="{{ $magazine->id }}"  @selected(old('magazine_id') == $magazine->id)>{{ $magazine->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('magazine_id')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Row-->
                                     </div>
+                                    <!--end::Card body-->
+                                    <!--end:Form-->
                                 </div>
-                                <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row mb-8">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Kısa Özet</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9 fv-row">
-                                        <textarea name="summary" id="" cols="30" rows="10" class="form-control form-control-solid @error('summary') is-invalid @enderror" style="resize: none">{!! old('summary') !!}</textarea>
-                                        @error('summary')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row mb-8">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">İçerik</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9 fv-row">
-                                        <textarea name="content" id="content" cols="30" rows="10" class="form-control form-control-solid @error('content') is-invalid @enderror" style="resize: none">{!! old('content') !!}</textarea>
-                                        @error('content')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row mb-8">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Kategori</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9 fv-row">
-                                        <select name="category_id" id="category_id" class="form-control form-control-solid">
-                                            <option value="">Seçiniz</option>
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('category_id')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row mb-8">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Dergi</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9 fv-row">
-                                        <select name="magazine_id" id="magazine_id" class="form-control form-control-solid">
-                                            <option value="">Seçiniz</option>
-                                            @foreach($magazines as $magazine)
-                                                <option value="{{ $magazine->id }}"  @selected(old('magazine_id') == $magazine->id)>{{ $magazine->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('magazine_id')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Row-->
-                                <div class="row mb-8">
-                                    <!--begin::Col-->
-                                    <div class="col-xl-3">
-                                        <div class="fs-6 fw-semibold mt-2 mb-3 required">Resim</div>
-                                    </div>
-                                    <!--end::Col-->
-                                    <!--begin::Col-->
-                                    <div class="col-xl-9 fv-row">
-                                        <input type="file" class="form-control" name="image">
-                                        @error('image')
-                                        <small class="text-danger">{{ $message }}</small>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <!--end::Row-->
+                                <!--end::Card-->
                             </div>
-                            <!--end::Card body-->
-                            <!--end:Form-->
                         </div>
-                        <!--end::Card-->
-                        <!--begin::Card-->
-                        <div class="card" style="margin-top: 35px">
-                            <!--begin::Card header-->
-                            <div class="card-header">
-                                <!--begin::Card title-->
-                                <div class="card-title fs-3 fw-bold">Meta Bilgileri</div>
-                                <!--end::Card title-->
-                            </div>
-                            <!--end::Card header-->
-                                <!--begin::Card body-->
-                                <div class="card-body p-9">
-                                    <!--begin::Row-->
-                                    <div class="row mb-8">
-                                        <!--begin::Col-->
-                                        <div class="col-xl-3">
-                                            <div class="fs-6 fw-semibold mt-2 mb-3">Başlık (Meta Title)</div>
-                                        </div>
-                                        <!--end::Col-->
-                                        <!--begin::Col-->
-                                        <div class="col-xl-9 fv-row">
-                                            <input type="text" class="form-control form-control-solid @error('meta_title') is-invalid @enderror" name="meta_title" value="{{ old('meta_title') }}" />
-                                            @error('meta_title')
-                                            <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <!--end::Row-->
-                                    <!--begin::Row-->
-                                    <div class="row mb-8">
-                                        <!--begin::Col-->
-                                        <div class="col-xl-3">
-                                            <div class="fs-6 fw-semibold mt-2 mb-3">Açıklama (Meta Description)</div>
-                                        </div>
-                                        <!--end::Col-->
-                                        <!--begin::Col-->
-                                        <div class="col-xl-9 fv-row">
-                                            <input type="text" class="form-control form-control-solid @error('meta_description') is-invalid @enderror" name="meta_description" value="{{ old('meta_description') }}" />
-                                            @error('meta_description')
-                                            <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <!--end::Row-->
-                                    <!--begin::Row-->
-                                    <div class="row mb-8">
-                                        <!--begin::Col-->
-                                        <div class="col-xl-3">
-                                            <div class="fs-6 fw-semibold mt-2 mb-3">Anahtar Kelimeler (Meta Keywords)</div>
-                                        </div>
-                                        <!--end::Col-->
-                                        <!--begin::Col-->
-                                        <div class="col-xl-9 fv-row">
-                                            <input type="text" class="form-control form-control-solid @error('meta_keywords') is-invalid @enderror" name="meta_keywords" value="{{ old('meta_keywords') }}" />
-                                            @error('meta_keywords')
-                                            <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <!--end::Row-->
-                                    <!--begin::Row-->
-                                    <div class="row mb-8">
-                                        <!--begin::Col-->
-                                        <div class="col-xl-3">
-                                            <div class="fs-6 fw-semibold mt-2 mb-3">Meta Robots</div>
-                                        </div>
-                                        <!--end::Col-->
-                                        <!--begin::Col-->
-                                        <div class="col-xl-9 fv-row">
-                                            <select name="meta_robots" id="meta_robots_id" class="form-control form-control-solid">
-                                                <option value="">Seçiniz</option>
-                                                <option value="index, robots" @selected(old('meta_robots') === "index, robots")>index, robots</option>
-                                                <option value="noindex, follow" @selected(old('meta_robots') === "noindex, follow")>noindex, follow</option>
-                                                <option value="noindex, nofollow" @selected(old('meta_robots') === "noindex, nofollow")>noindex, nofollow</option>
-                                            </select>
-                                            @error('meta_robots')
-                                            <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <!--end::Row-->
-                                </div>
-                                <!--end::Card body-->
-                                <!--begin::Card footer-->
-                                <div class="card-footer d-flex justify-content-end py-6 px-9">
-                                    <a href="{{ route('admin.news.index') }}" class="btn btn-light btn-active-light-primary me-2">Vazgeç</a>
-                                    <button type="submit" class="btn btn-primary">Kaydet</button>
-                                </div>
-                                <!--end::Card footer-->
-                            <!--end:Form-->
-                        </div>
-                        <!--end::Card-->
                     </form>
                 </div>
                 <!--end::Content container-->

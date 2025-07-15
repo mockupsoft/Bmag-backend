@@ -11,11 +11,14 @@ class News extends Model
     protected $table = "news";
 
     protected $fillable = [
-        "title",
+        "in_title",
+        "out_title",
         "slug",
         "summary",
         "content",
-        "image",
+        "large_image",
+        "news_detail_image",
+        "list_image",
         "is_published",
         "viewed",
         "published_at",

@@ -28,23 +28,44 @@ class NewsController extends Controller
         return view('admin.news.create', compact('categories', 'magazines'));
     }
 
-    public function store(Request $request)
+    public function store(NewsStoreRequest $request)
     {
-        dd($request->all());
-        $news = News::query()->create($request->validated());
-
-        $file = $request->file('image');
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
-
+        $largeImage = $request->file('large_image');
+        $largeImageFileName = time() . '.' . $largeImage->getClientOriginalExtension();
         Storage::disk('s3')->put(
-            'bmag/' . $fileName,
-            file_get_contents($file),
+            'bmag/' . $largeImageFileName,
+            file_get_contents($largeImage),
             'public'
         );
+        $largeImageUrl = Storage::disk('s3')->url('bmag/' . $largeImageFileName);
+        sleep(1);
 
-        $url = Storage::disk('s3')->url('bmag/' . $fileName);
-        $news->image = $url;
-        $news->save();
+        $newsDetailsImage = $request->file('news_detail_image');
+        $newsDetailsFileName = time() . '.' . $newsDetailsImage->getClientOriginalExtension();
+        Storage::disk('s3')->put(
+            'bmag/' . $newsDetailsFileName,
+            file_get_contents($newsDetailsImage),
+            'public'
+        );
+        $newsDetailsImageUrl = Storage::disk('s3')->url('bmag/' . $newsDetailsFileName);
+        sleep(1);
+
+        $listImage = $request->file('list_image');
+        $listImageFileName = time() . '.' . $listImage->getClientOriginalExtension();
+        Storage::disk('s3')->put(
+            'bmag/' . $listImageFileName,
+            file_get_contents($listImage),
+            'public'
+        );
+        $listImageUrl = Storage::disk('s3')->url('bmag/' . $listImageFileName);
+        News::query()->create(array_merge(
+            $request->validated(),
+            [
+                'large_image' => $largeImageUrl,
+                'news_detail_image' => $newsDetailsImageUrl,
+                'list_image' => $listImageUrl
+            ]
+        ));
 
         session_success("Haber eklendi ve onaya gönderildi.");
         return redirect()->route('admin.news.index');
@@ -72,20 +93,46 @@ class NewsController extends Controller
             'published_by' => Auth::user()->id
         ]));
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $fileName = time() . '.' . $file->getClientOriginalExtension();
-
+        if ($request->hasFile('large_image')) {
+            $largeImage = $request->file('large_image');
+            $largeImageFileName = time() . '.' . $largeImage->getClientOriginalExtension();
             Storage::disk('s3')->put(
-                'bmag/' . $fileName,
-                file_get_contents($file),
+                'bmag/' . $largeImageFileName,
+                file_get_contents($largeImage),
                 'public'
             );
+            $largeImageUrl = Storage::disk('s3')->url('bmag/' . $largeImageFileName);
+            sleep(1);
 
-            $url = Storage::disk('s3')->url('bmag/' . $fileName);
-            $news->image = $url;
-            $news->save();
+            $news->large_image = $largeImageUrl;
         }
+
+        if ($request->hasFile('news_detail_image')) {
+            $newsDetailsImage = $request->file('news_detail_image');
+            $newsDetailsFileName = time() . '.' . $newsDetailsImage->getClientOriginalExtension();
+            Storage::disk('s3')->put(
+                'bmag/' . $newsDetailsFileName,
+                file_get_contents($newsDetailsImage),
+                'public'
+            );
+            $newsDetailsImageUrl = Storage::disk('s3')->url('bmag/' . $newsDetailsFileName);
+            sleep(1);
+            $news->news_detail_image = $newsDetailsImageUrl;
+        }
+
+        if ($request->hasFile('list_image')) {
+            $listImage = $request->file('list_image');
+            $listImageFileName = time() . '.' . $listImage->getClientOriginalExtension();
+            Storage::disk('s3')->put(
+                'bmag/' . $listImageFileName,
+                file_get_contents($listImage),
+                'public'
+            );
+            $listImageUrl = Storage::disk('s3')->url('bmag/' . $listImageFileName);
+            $news->list_image = $listImageUrl;
+        }
+
+        $news->save();
 
         session_success("Haber güncellendi.");
         return redirect()->route('admin.news.index');
