@@ -31,6 +31,6 @@ class RollController extends Controller
         );
 
         session_success("Yükleme başarılı");
-        return redirect()->route('admin.magazine.rolls.index', $magazine);
+        return redirect()->route('admin.roll.index', $magazine);
     }
 }
