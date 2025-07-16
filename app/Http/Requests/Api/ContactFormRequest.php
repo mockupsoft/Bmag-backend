@@ -10,6 +10,7 @@ class ContactFormRequest extends FormRequest
     {
         return [
             'name_surname' => 'required|string|max:255',
+            'email'         => 'required|string|max:255',
             'subject'      => 'required|string|max:255',
             'message'      => 'required|string|min:10',
         ];
@@ -19,6 +20,7 @@ class ContactFormRequest extends FormRequest
     {
         return [
             'name_surname.required' => 'Ad soyad alanı zorunludur.',
+            'email.required'        => 'E-posta alanı zorunludur.',
             'subject.required'      => 'Konu alanı zorunludur.',
             'message.required'      => 'Mesaj alanı zorunludur.',
             'message.min'           => 'Mesaj en az 10 karakter olmalıdır.',
