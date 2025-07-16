@@ -35,12 +35,23 @@ class News extends Model
     protected static function booted()
     {
         static::creating(function ($news) {
-            $news->slug = Str::slug($news->title);
+            $news->slug = Str::slug($news->in_title);
 
-            // Slug benzersiz olacaksa burada kontrol edebilirsin
             $originalSlug = $news->slug;
             $i = 1;
             while (News::where('slug', $news->slug)->exists()) {
+                $news->slug = $originalSlug . '-' . $i++;
+            }
+        });
+
+        static::updating(function ($news) {
+            $news->slug = Str::slug($news->in_title);
+
+            $originalSlug = $news->slug;
+            $i = 1;
+
+            // Güncel haberin kendisi hariç kontrol et
+            while (News::where('slug', $news->slug)->where('id', '!=', $news->id)->exists()) {
                 $news->slug = $originalSlug . '-' . $i++;
             }
         });
