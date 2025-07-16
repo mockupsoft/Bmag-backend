@@ -14,9 +14,10 @@ class RollResource extends JsonResource
             'path' => $this->path,
             'description' => $this->description,
             'magazine' => [
-                'id' => $this->magazine_id,
-                'name' => $this->magazine->name,
-                'image' => $this->magazine->image
+                'id' => $this->magazine?->id,
+                'name' => $this->magazine?->name,
+                'image' => $this->magazine?->image,
+                'slug' => $this->magazine?->slug
             ],
             'like_count' => $this->likes_count,
             'comment_count' => $this->comments_count,
