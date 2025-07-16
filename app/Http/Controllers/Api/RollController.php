@@ -35,6 +35,7 @@ class RollController extends Controller
                 $query->whereNotIn('id', $watchedRollIds);
             })
             ->withCount(['likes', 'comments'])
+            ->inRandomOrder()
             ->first();
 
         if ($roll) {
