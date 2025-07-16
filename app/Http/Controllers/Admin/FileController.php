@@ -11,7 +11,7 @@ class FileController extends Controller
 {
     public function index()
     {
-        $files = File::query()->get();
+        $files = File::query()->orderBy('created_at', 'DESC')->get();
 
         return view('admin.file.index', compact('files'));
     }

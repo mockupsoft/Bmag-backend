@@ -33,6 +33,7 @@ class NewsStoreRequest extends FormRequest
             'in_title.required' => 'İç başlık alanı zorunludur.',
             'out_title.required' => 'Dış başlık alanı zorunludur.',
             'summary.required' => 'Özet alanı zorunludur.',
+            'summary.max' => '1000 karakteri geçez.',
             'content.required' => 'İçerik alanı zorunludur.',
             'category_id.required' => 'Kategori alanı zorunludur.',
             'magazine_id.required' => 'Degi alanı zorunludur.',

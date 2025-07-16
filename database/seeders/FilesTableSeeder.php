@@ -341,6 +341,104 @@ class FilesTableSeeder extends Seeder
                 'created_at' => '2025-07-12 11:32:47',
                 'updated_at' => '2025-07-12 11:32:47',
             ),
+            46 => 
+            array (
+                'id' => 62,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752645097.jpeg',
+                'created_at' => '2025-07-16 05:51:38',
+                'updated_at' => '2025-07-16 05:51:38',
+            ),
+            47 => 
+            array (
+                'id' => 63,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752645551.png',
+                'created_at' => '2025-07-16 05:59:12',
+                'updated_at' => '2025-07-16 05:59:12',
+            ),
+            48 => 
+            array (
+                'id' => 64,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752645943.jpg',
+                'created_at' => '2025-07-16 06:05:44',
+                'updated_at' => '2025-07-16 06:05:44',
+            ),
+            49 => 
+            array (
+                'id' => 65,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752645991.jpg',
+                'created_at' => '2025-07-16 06:06:31',
+                'updated_at' => '2025-07-16 06:06:31',
+            ),
+            50 => 
+            array (
+                'id' => 66,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752646017.jpg',
+                'created_at' => '2025-07-16 06:06:58',
+                'updated_at' => '2025-07-16 06:06:58',
+            ),
+            51 => 
+            array (
+                'id' => 67,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752646048.jpg',
+                'created_at' => '2025-07-16 06:07:29',
+                'updated_at' => '2025-07-16 06:07:29',
+            ),
+            52 => 
+            array (
+                'id' => 68,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752646054.jpg',
+                'created_at' => '2025-07-16 06:07:34',
+                'updated_at' => '2025-07-16 06:07:34',
+            ),
+            53 => 
+            array (
+                'id' => 69,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752646523.jpg',
+                'created_at' => '2025-07-16 06:15:23',
+                'updated_at' => '2025-07-16 06:15:23',
+            ),
+            54 => 
+            array (
+                'id' => 70,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752646567.jpg',
+                'created_at' => '2025-07-16 06:16:07',
+                'updated_at' => '2025-07-16 06:16:07',
+            ),
+            55 => 
+            array (
+                'id' => 71,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752646607.jpg',
+                'created_at' => '2025-07-16 06:16:48',
+                'updated_at' => '2025-07-16 06:16:48',
+            ),
+            56 => 
+            array (
+                'id' => 72,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752646633.jpg',
+                'created_at' => '2025-07-16 06:17:13',
+                'updated_at' => '2025-07-16 06:17:13',
+            ),
+            57 => 
+            array (
+                'id' => 74,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752646659.jpg',
+                'created_at' => '2025-07-16 06:17:39',
+                'updated_at' => '2025-07-16 06:17:39',
+            ),
+            58 => 
+            array (
+                'id' => 75,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752646794.jpeg',
+                'created_at' => '2025-07-16 06:19:55',
+                'updated_at' => '2025-07-16 06:19:55',
+            ),
+            59 => 
+            array (
+                'id' => 76,
+                'path' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752646869.png',
+                'created_at' => '2025-07-16 06:21:10',
+                'updated_at' => '2025-07-16 06:21:10',
+            ),
         ));
         
         

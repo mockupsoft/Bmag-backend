@@ -24,8 +24,8 @@ class MagazinesTableSeeder extends Seeder
                 'id' => 3,
                 'name' => 'Ceo Life',
                 'slug' => 'ceo-life',
-                'description' => NULL,
-                'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/car_photos/17/20241013152303-670be5d79387d.jpg',
+                'description' => '<p>Ceo Life</p>',
+                'image' => 'https://past-service.s3.eu-north-1.amazonaws.com/bmag/1752644899.png',
                 'meta_title' => NULL,
                 'meta_description' => NULL,
                 'meta_keywords' => NULL,
@@ -34,7 +34,7 @@ class MagazinesTableSeeder extends Seeder
                 'robots' => 'index, follow',
                 'is_active' => 1,
                 'created_at' => NULL,
-                'updated_at' => NULL,
+                'updated_at' => '2025-07-16 05:48:20',
             ),
             1 => 
             array (
