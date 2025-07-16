@@ -112,9 +112,7 @@ class NewsController extends Controller
 
     public function getNews()
     {
-        $magazines = Magazine::query()->with(['news' => function ($newsQuery) {
-            $newsQuery->limit(5);
-        }])->get();
+        $magazines = Magazine::query()->with(['news'])->get();
 
         return new MagazineCollection($magazines);
     }
