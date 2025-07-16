@@ -917,8 +917,7 @@
                                 <div class="card-header pt-7">
                                     <!--begin::Title-->
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label fw-bold text-gray-900">Author Sales</span>
-                                        <span class="text-gray-500 pt-2 fw-semibold fs-6">Statistics by Countries</span>
+                                        <span class="card-label fw-bold text-gray-900">Yazar Makaleleri</span>
                                     </h3>
                                     <!--end::Title-->
                                     <!--begin::Toolbar-->
@@ -969,7 +968,7 @@
                                 <div class="card-header pt-5">
                                     <!--begin::Title-->
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label fw-bold text-gray-800">Top Queries by Clicks</span>
+                                        <span class="card-label fw-bold text-gray-800">Tıklamalara Göre En Çok Yapılan Sorgular</span>
                                         <span class="text-gray-500 pt-2 fw-semibold fs-6">Counted in Millions</span>
                                     </h3>
                                     <!--end::Title-->
@@ -1209,8 +1208,7 @@
                                 <div class="card-header py-5">
                                     <!--begin::Title-->
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label fw-bold text-gray-900">Human Resources</span>
-                                        <span class="text-gray-500 mt-1 fw-semibold fs-6">Reports by states and ganders</span>
+                                        <span class="card-label fw-bold text-gray-900">İnsan Kaynakları</span>
                                     </h3>
                                     <!--end::Title-->
                                     <!--begin::Toolbar-->
@@ -1318,8 +1316,7 @@
                                 <div class="card-header pt-7">
                                     <!--begin::Title-->
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label fw-bold text-gray-800">Visits by Source</span>
-                                        <span class="text-gray-500 mt-1 fw-semibold fs-6">29.4k visitors</span>
+                                        <span class="card-label fw-bold text-gray-800">Kaynağa Göre Ziyaretler</span>
                                     </h3>
                                     <!--end::Title-->
                                     <!--begin::Toolbar-->
@@ -1704,8 +1701,7 @@
                                 <div class="card-header pt-7 mb-7">
                                     <!--begin::Title-->
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label fw-bold text-gray-800">Warephase stats</span>
-                                        <span class="text-gray-500 mt-1 fw-semibold fs-6">8k social visitors</span>
+                                        <span class="card-label fw-bold text-gray-800">İstatistikler</span>
                                     </h3>
                                     <!--end::Title-->
                                     <!--begin::Toolbar-->
@@ -1734,7 +1730,7 @@
                                 <div class="card-header pt-7 mb-7">
                                     <!--begin::Title-->
                                     <h3 class="card-title align-items-start flex-column">
-                                        <span class="card-label fw-bold text-gray-800">Stats by Department</span>
+                                        <span class="card-label fw-bold text-gray-800">Bölüme Göre İstatistikler</span>
                                         <span class="text-gray-500 mt-1 fw-semibold fs-6">8k social visitors</span>
                                     </h3>
                                     <!--end::Title-->
