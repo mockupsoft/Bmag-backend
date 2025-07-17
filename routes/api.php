@@ -58,3 +58,4 @@ Route::get('{roll}/get-comments', [RollController::class, 'getComments'])->middl
 Route::post('update-profile', [UserController::class, 'updateProfile'])->middleware('auth:api');
 Route::get('get-news-viewing-history', [UserController::class, 'getNewsViewingHistory'])->middleware('auth:api');
 Route::post('search',[GeneralController::class, 'search']);
+Route::post('change-password',[UserController::class, 'changePassword'])->middleware('auth:api');
