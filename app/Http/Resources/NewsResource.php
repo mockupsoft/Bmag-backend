@@ -35,6 +35,7 @@ class NewsResource extends JsonResource
             'meta_description' => $this->meta_description,
             'meta_keywords' => $this->meta_keywords,
             'tags' => $this->tags,
+            'next_news_slug' => $this->getNextNews($this->id)->slug,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

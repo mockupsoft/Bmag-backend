@@ -66,4 +66,9 @@ class News extends Model
     {
         return $this->hasOne(Magazine::class, 'id', 'magazine_id');
     }
+
+    public static function getNextNews($id)
+    {
+        return self::where('id', '>', $id)->orderBy('id', 'asc')->first();
+    }
 }
