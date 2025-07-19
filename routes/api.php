@@ -26,7 +26,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('check-verification-code', [AuthController::class, 'checkVerificationCode']);
 Route::post('login', [AuthController::class, 'login']);
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
-Route::post('refresh-token', [AuthController::class, 'refreshToken'])->middleware('auth:api');
+Route::post('refresh-token', [AuthController::class, 'refreshToken']);
 Route::get('me', [UserController::class, 'me'])->middleware('auth:api');
 
 Route::get('get-categories', [CategoryController::class, 'getCategories']);

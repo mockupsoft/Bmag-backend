@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\StoreUserRequest;
+use App\Models\User;
 use App\Services\NetGsmService;
 use App\Services\UserService;
+use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
@@ -87,26 +91,48 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
-
         if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        $user = JWTAuth::user();
+        $refreshToken = Str::random(60);
+
+        Cache::put('refresh_token:' . $refreshToken, $user->id, now()->addDays(30));
 
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60,
+            'expires_in' => JWTAuth::factory()->getTTL() * 60,
+            'refresh_token' => $refreshToken
         ]);
     }
 
-    public function refreshToken()
+    public function refreshToken(Request $request)
     {
-        $newToken = JWTAuth::parseToken()->refresh();
+        $refreshToken = $request->header('X-Refresh-Token');
+
+        if (!$refreshToken) {
+            return response()->json(['error' => 'Refresh token is required'], 400);
+        }
+
+        $userId = Cache::get('refresh_token:' . $refreshToken);
+
+        if (!$userId) {
+            return response()->json(['error' => 'Invalid or expired refresh token'], 401);
+        }
+
+        $user = User::find($userId);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
+        $newToken = JWTAuth::fromUser($user);
 
         return response()->json([
             'access_token' => $newToken,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'expires_in' => JWTAuth::factory()->getTTL() * 60,
         ]);
     }
 
@@ -117,7 +143,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'message' => 'Çıkış başarılı.'
-            ], 200);
+            ]);
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json([
                 'error' => 'Token geçersiz veya zaten çıkış yapılmış.'
