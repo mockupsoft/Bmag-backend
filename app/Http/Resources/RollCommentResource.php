@@ -10,7 +10,11 @@ class RollCommentResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'user' => new UserResource($this->user),
+            'user' => [
+                'id'            => $this->user->id,
+                'name_surname'  => $this->formatted_name,
+                'profile_image' => $this->profile_image
+            ],
             'comment' => $this->comment
         ];
     }
