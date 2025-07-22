@@ -14,7 +14,7 @@ class GeneralController extends Controller
         $keyword = $request->keyword;
         $news = News::query()
             ->where(function ($query) use ($keyword) {
-                $query->where('title', 'like', "%{$keyword}%")
+                $query->where('in_title', 'like', "%{$keyword}%")
                     ->orWhere('summary', 'like', "%{$keyword}%")
                     ->orWhere('content', 'like', "%{$keyword}%")
                     ->orWhere('tags', 'like', "%{$keyword}%");
