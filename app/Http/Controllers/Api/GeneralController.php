@@ -19,6 +19,11 @@ class GeneralController extends Controller
                     ->orWhere('content', 'like', "%{$keyword}%")
                     ->orWhere('tags', 'like', "%{$keyword}%");
             })
+            ->with(['category' => function ($query) {
+                $query->select('id', 'name', 'slug');
+            }, 'magazine' => function ($query) {
+                $query->select('id', 'name', 'slug');
+            }])
             ->get();
 
         $magazines = Magazine::query()
