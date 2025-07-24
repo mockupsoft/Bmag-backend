@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('canonical_url')->nullable();
             $table->string('seo_image')->nullable();
             $table->string('robots')->default('index, follow');
+            $table->integer('order')->default(9999);
             $table->boolean("is_active")->default(true);
             $table->timestamps();
         });

@@ -29,6 +29,7 @@ class News extends Model
         "meta_description",
         "meta_keywords",
         "tags",
+        "order",
         "robots"
     ];
 

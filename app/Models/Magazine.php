@@ -20,6 +20,7 @@ class Magazine extends Model
         "canonical_url",
         "seo_image",
         "robots",
+        "order",
         "is_active"
     ];
 
