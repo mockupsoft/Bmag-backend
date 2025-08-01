@@ -20,7 +20,7 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                            Yeni Haber Ekle</h1>
+                            Haber Düzenle</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -36,7 +36,7 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                <a href="index.html" class="text-muted text-hover-primary">Haberler</a>
+                                <a href="{{ route('admin.news.index') }}" class="text-muted text-hover-primary">Haberler</a>
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
@@ -46,7 +46,7 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-muted">
-                                Yeni Haber Ekle
+                                Haber Düzenle
                             </li>
                             <!--end::Item-->
                         </ul>

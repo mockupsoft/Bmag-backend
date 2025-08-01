@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\GeneralController;
 use App\Http\Controllers\Api\MagazineController;
 use App\Http\Controllers\Api\NewsController;
 use App\Http\Controllers\Api\RollController;
+use App\Http\Controllers\Api\SerieController;
 use App\Http\Controllers\Api\SubscriberController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
@@ -59,3 +60,7 @@ Route::post('update-profile', [UserController::class, 'updateProfile'])->middlew
 Route::get('get-news-viewing-history', [UserController::class, 'getNewsViewingHistory'])->middleware('auth:api');
 Route::post('search',[GeneralController::class, 'search']);
 Route::post('change-password',[UserController::class, 'changePassword'])->middleware('auth:api');
+
+Route::get('get-series', [SerieController::class, 'getSeries']);
+Route::get('get-serie/{slug}', [SerieController::class, 'getSerie']);
+Route::get('get-episode/{sectionSlug}', [SerieController::class, 'getEpisode']);

@@ -46,5 +46,8 @@ class DatabaseSeeder extends Seeder
         $this->call(RollsTableSeeder::class);
         $this->call(SettingsTableSeeder::class);
         $this->call(UserNewsViewsTableSeeder::class);
+        $this->call(SeriesTableSeeder::class);
+        $this->call(SerieSeasonsTableSeeder::class);
+        $this->call(SerieSectionsTableSeeder::class);
     }
 }
