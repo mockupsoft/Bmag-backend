@@ -3473,6 +3473,7 @@ License: For each use you must have a valid license purchased only from above li
                 }
             }
         });
+
     });
 </script>
 @yield('js')
@@ -3500,6 +3501,12 @@ License: For each use you must have a valid license purchased only from above li
             toastr.success("{{ Session::get('success_message') }}");
         });
     @endif
+    $(function() {
+        $('form').on('submit', function() {
+            const btn = $(this).find('button[type="submit"]');
+            btn.prop('disabled', true).text('Kaydediliyor...');
+        });
+    });
 </script>
 <!--end::Custom Javascript-->
 <!--end::Javascript-->
