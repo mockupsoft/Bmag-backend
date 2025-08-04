@@ -39,20 +39,20 @@ class RollController extends Controller
             ->first();
 
         if ($roll) {
-            if (Auth::guard('api')->check()){
-                RollView::query()
-                    ->updateOrCreate(
-                        [
-                            'user_id' => $authUser,
-                            'roll_id' => $roll->id
-                        ],
-                        [
-                            'user_id' => $authUser->id,
-                            'roll_id' => $roll->id,
-                            'viewed_at' => Carbon::now()
-                        ]
-                    );
-            }
+            //if (Auth::guard('api')->check()){
+            //    RollView::query()
+            //        ->updateOrCreate(
+            //            [
+            //                'user_id' => $authUser,
+            //                'roll_id' => $roll->id
+            //            ],
+            //            [
+            //                'user_id' => $authUser->id,
+            //                'roll_id' => $roll->id,
+            //                'viewed_at' => Carbon::now()
+            //            ]
+            //        );
+            //}
             return new RollResource($roll);
         }else{
             return response()->json([
