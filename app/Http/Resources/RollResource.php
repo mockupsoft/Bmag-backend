@@ -21,6 +21,7 @@ class RollResource extends JsonResource
             ],
             'like_count' => $this->likes_count,
             'comment_count' => $this->comments_count,
+            'liked' => $this->liked
         ];
     }
 }

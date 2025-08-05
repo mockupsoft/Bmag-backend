@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Roll extends Model
@@ -13,6 +14,8 @@ class Roll extends Model
         "path",
         "description"
     ];
+
+    protected $appends = ['liked'];
 
     public function magazine()
     {
@@ -27,5 +30,19 @@ class Roll extends Model
     public function comments()
     {
         return $this->hasMany(RollComment::class)->whereNotNull('approved_at');
+    }
+
+    public function getLikedAttribute()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return false;
+        }
+
+        return RollView::query()
+            ->where('roll_id', $this->id)
+            ->where('user_id', $user->id)
+            ->exists();
     }
 }
