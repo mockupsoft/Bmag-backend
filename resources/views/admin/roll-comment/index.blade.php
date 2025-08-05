@@ -60,6 +60,7 @@
                                     <th class="min-w-200px">Roll</th>
                                     <th class="min-w-200px">Yorum</th>
                                     <th class="min-w-200px">Dorum</th>
+                                    <th class="min-w-200px">Tarih</th>
                                     <th class="text-end min-w-70px">Eylemler</th>
                                 </tr>
                                 </thead>
@@ -79,6 +80,9 @@
                                         </td>
                                         <td>
                                             <a href="javascript:void(0)" class="text-gray-800 text-hover-primary fs-5 fw-bold" data-kt-ecommerce-product-filter="product_name">{{ is_null($rollComment->approved_at) ? 'Onaylı Değil' : 'Onaylı' }}</a>
+                                        </td>
+                                        <td>
+                                            {{ $rollComment->created_at ? \Carbon\Carbon::parse($rollComment->created_at)->translatedFormat('j M Y H:i'):'' }}
                                         </td>
                                         <td class="text-end">
                                             <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Eylemler
