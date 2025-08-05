@@ -12,7 +12,7 @@ class RollCommentController extends Controller
 {
     public function index()
     {
-        $rollComments = RollComment::query()->paginate(2);
+        $rollComments = RollComment::query()->paginate(15);
         return view('admin.roll-comment.index', compact('rollComments'));
     }
 
