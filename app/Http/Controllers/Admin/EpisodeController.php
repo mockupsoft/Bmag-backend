@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Serie;
 use App\Models\SerieSection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Str;
 use App\Jobs\ConvertVideoToHLS;
 
@@ -35,9 +36,14 @@ class EpisodeController extends Controller
 
         $section = SerieSection::query()->create(array_merge($request->all(), ['serie_id' => $serieId, 'serie_season_id' => $seasonId, 'video_path' => '-']));
 
-        // 2. Kuyruğa gönderirken ID'yi de geçir
-        ConvertVideoToHLS::dispatch($fullPath, $key, $section->id);
 
-        return redirect()->route('admin.episode.index', ['serieId' => $serieId, 'seasonId' => $seasonId]);
+        try {
+            ConvertVideoToHLS::dispatch($fullPath, $key, $section->id);
+            Log::info('📦 Job dispatch edildi.');
+        } catch (\Exception $e) {
+            Log::error('❌ Job dispatch HATASI: ' . $e->getMessage());
+        }
+
+        return response()->json(['success' => true, 'url' => route('admin.episode.index', ['serieId' => $serieId, 'seasonId' => $seasonId])]);
     }
 }

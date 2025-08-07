@@ -81,7 +81,7 @@
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
                 <div id="kt_app_content_container" class="app-container container-xxl">
-                    <form class="form" method="POST" action="{{ route('admin.episode.store', ['serieId' => $serieId, 'seasonId' => $seasonId]) }}" enctype="multipart/form-data">
+                    <form class="form" id="uploadForm" method="POST" action="{{ route('admin.episode.store', ['serieId' => $serieId, 'seasonId' => $seasonId]) }}" enctype="multipart/form-data">
                         @csrf
                         <!--begin::Card-->
                         <div class="card">
@@ -104,7 +104,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" />
+                                        <input type="text" id="name" class="form-control form-control-solid @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" />
                                         @error('name')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -136,7 +136,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="text" class="form-control form-control-solid @error('row') is-invalid @enderror" name="row" value="{{ old('row') }}" />
+                                        <input type="text" id="row" class="form-control form-control-solid @error('row') is-invalid @enderror" name="row" value="{{ old('row') }}" />
                                         @error('row')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -152,7 +152,7 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <select name="locked" class="form-control">
+                                        <select name="locked" class="form-control" id="locked">
                                             <option value="0">Hayır</option>
                                             <option value="1">Evet</option>
                                         </select>
@@ -171,10 +171,15 @@
                                     <!--end::Col-->
                                     <!--begin::Col-->
                                     <div class="col-xl-9 fv-row">
-                                        <input type="file" class="form-control" name="video">
+                                        <input type="file" class="form-control" name="video" id="videoInput">
                                         @error('video')
                                         <small class="text-danger">{{ $message }}</small>
                                         @enderror
+                                        <div id="progressContainer" style="display:none; margin-top: 10px;">
+                                            <progress id="progressBar" value="0" max="100" style="width: 100%;"></progress>
+                                            <span id="progressPercent">0%</span>
+                                        </div>
+                                        <div id="status" style="margin-top: 10px;"></div>
                                     </div>
                                 </div>
                                 <!--end::Row-->
@@ -306,5 +311,53 @@
 @endsection
 
 @section('js')
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
+            const fileInput = document.getElementById('videoInput');
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('video', file);
+            formData.append('name', $('#name').val());
+            formData.append('description', $('#description').val());
+            formData.append('row', $('#row').val());
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '{{ route('admin.episode.store', ['serieId' => $serieId, 'seasonId' => $seasonId]) }}', true);
+            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+
+
+            xhr.upload.addEventListener('progress', function(e) {
+                if (e.lengthComputable) {
+                    const percent = Math.round((e.loaded / e.total) * 100);
+                    document.getElementById('progressContainer').style.display = 'block';
+                    document.getElementById('progressBar').value = percent;
+                    document.getElementById('progressPercent').innerText = percent + '%';
+                }
+            });
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    document.getElementById('status').innerText = '✅ Yükleme tamamlandı!';
+                    setTimeout(function () {
+                        window.location.href = response.url;
+                    }, 2000);
+                } else {
+                    document.getElementById('status').innerText = '❌ Hata oluştu!';
+                }
+            };
+
+            xhr.onerror = function() {
+                document.getElementById('status').innerText = '❌ Ağ hatası!';
+            };
+
+            xhr.send(formData);
+
+
+        });
+    </script>
 @endsection
