@@ -33,6 +33,7 @@ class ConvertVideoToHLS implements ShouldQueue
         }
 
         $ffmpegPath = '/opt/homebrew/bin/ffmpeg'; // senin sistem yoluna göre ayarla
+        $ffmpegPath = '/usr/bin/ffmpeg'; // senin sistem yoluna göre ayarla
         $outputFile = "$outputDir/output.m3u8";
 
         $command = [
