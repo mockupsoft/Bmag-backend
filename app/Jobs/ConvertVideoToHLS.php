@@ -49,6 +49,7 @@ class ConvertVideoToHLS implements ShouldQueue
         ];
 
         $process = new Process($command);
+        $process->setTimeout(300);
         $process->run();
 
         if (!$process->isSuccessful()) {
