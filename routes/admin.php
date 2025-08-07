@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\MagazineController;
 use App\Http\Controllers\Admin\MagazineIssueController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\RollCommentController;
 use App\Http\Controllers\Admin\RollController;
+use App\Http\Controllers\Admin\SeasonController;
+use App\Http\Controllers\Admin\SerieController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserGroupController;
@@ -23,14 +26,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('admin.dashboard');
-})->middleware('auth');
-
-Route::get('home', function (){
-    return view('home');
-});
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('gosterge-paneli', [DashboardController::class, 'dashboard'])->name('dashboard');
@@ -106,8 +101,30 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('index', [FileController::class, 'index'])->name('index');
         Route::get('create', [FileController::class, 'create'])->name('create');
         Route::post('store', [FileController::class, 'store'])->name('store');
-        Route::get('{file}/edit', [FileController::class, 'edit'])->name('edit');
-        Route::post('{file}/update', [FileController::class, 'update'])->name('update');
+    });
+
+    Route::group(['as' => 'serie.', 'prefix' => 'serie'], function () {
+        Route::get('index', [SerieController::class, 'index'])->name('index');
+        Route::get('create', [SerieController::class, 'create'])->name('create');
+        Route::post('store', [SerieController::class, 'store'])->name('store');
+        Route::get('{serie}/edit', [SerieController::class, 'edit'])->name('edit');
+        Route::post('{serie}/update', [SerieController::class, 'update'])->name('update');
+    });
+
+    Route::group(['as' => 'season.', 'prefix' => 'season'], function () {
+        Route::get('{serieId}/index', [SeasonController::class, 'index'])->name('index');
+        Route::get('{serieId}/create', [SeasonController::class, 'create'])->name('create');
+        Route::post('{serieId}/store', [SeasonController::class, 'store'])->name('store');
+        Route::get('{season}/edit', [SeasonController::class, 'edit'])->name('edit');
+        Route::post('{season}/update', [SeasonController::class, 'update'])->name('update');
+    });
+
+    Route::group(['as' => 'episode.', 'prefix' => 'episode'], function () {
+        Route::get('{serieId}/{seasonId}/index', [EpisodeController::class, 'index'])->name('index');
+        Route::get('{serieId}/{seasonId}/create', [EpisodeController::class, 'create'])->name('create');
+        Route::post('{serieId}/{seasonId}/store', [EpisodeController::class, 'store'])->name('store');
+        Route::get('{season}/edit', [EpisodeController::class, 'edit'])->name('edit');
+        Route::post('{season}/update', [EpisodeController::class, 'update'])->name('update');
     });
 });
 

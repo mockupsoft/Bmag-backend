@@ -83,6 +83,39 @@
                     </div>
                     <!--end:Menu item-->
                     <!--begin:Menu item-->
+                    <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(in_array($page, ['serie'])) hover show @endif">
+                        <!--begin:Menu link-->
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-address-book fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Dizi Yönetimi</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <!--end:Menu link-->
+                        <!--begin:Menu sub-->
+                        <div class="menu-sub menu-sub-accordion">
+                            <!--begin:Menu item-->
+                            <div class="menu-item @if($page == "serie") hover @endif">
+                                <!--begin:Menu link-->
+                                <a class="menu-link" href="{{ route('admin.serie.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">Diziler</span>
+                                </a>
+                                <!--end:Menu link-->
+                            </div>
+                            <!--end:Menu item-->
+                        </div>
+                        <!--end:Menu sub-->
+                    </div>
+                    <!--end:Menu item-->
+                    <!--begin:Menu item-->
                     <div data-kt-menu-trigger="click" class="menu-item menu-accordion @if(in_array($page, ['news', 'category', 'not-approved-news'])) hover show @endif">
                         <!--begin:Menu link-->
                         <span class="menu-link">

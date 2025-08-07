@@ -14,6 +14,11 @@ class SerieSeason extends Model
         "row"
     ];
 
+    public function serie()
+    {
+        return $this->belongsTo(Serie::class);
+    }
+
     public function sections()
     {
         return $this->hasMany(SerieSection::class, 'serie_season_id', 'id');
