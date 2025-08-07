@@ -84,4 +84,28 @@ class User extends Authenticatable implements JWTSubject
         return "$firstName $lastNameInitial";
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function activeSubscription()
+    {
+        return $this->hasOne(Subscription::class)
+            ->where('status', 'active')
+            ->where('ends_at', '>=', now());
+    }
+
+    public function hasAccessTo($feature)
+    {
+        $subscription = $this->activeSubscription()->first();
+
+        if (!$subscription) {
+            return false;
+        }
+
+        return $subscription->plan
+            ->features
+            ->contains('feature', $feature);
+    }
 }

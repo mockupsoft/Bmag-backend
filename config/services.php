@@ -35,6 +35,10 @@ return [
         'username' => env('NETGSM_USERNAME'),
         'password' => env('NETGSM_PASSWORD'),
         'header' => env('NETGSM_HEADER'),
+    ],
+
+    'apple' => [
+        "shared_secret" => env('APPLE_SHARED_KEY'),
     ]
 
 ];

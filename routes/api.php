@@ -65,3 +65,5 @@ Route::get('get-series', [SerieController::class, 'getSeries']);
 Route::get('get-serie/{slug}', [SerieController::class, 'getSerie']);
 Route::get('get-episode/{sectionSlug}', [SerieController::class, 'getEpisode']);
 Route::post('watch', [SerieController::class, 'watch'])->middleware('auth:api');
+
+Route::post('ios/verify-purchase', [\App\Http\Controllers\Api\AppleController::class, 'verifyIosPurchase']);
