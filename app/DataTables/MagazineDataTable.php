@@ -16,7 +16,7 @@ class MagazineDataTable extends DataTable
                 $short = mb_strlen($row->name) > 30 ? mb_substr($row->name, 0, 30) . '...' : $row->name;
                 return '<span data-bs-toggle="tooltip" data-bs-placement="top" title="' . $full . '">' . e($short) . '</span>';
             })
-            ->addColumn('description', function ($row) {
+            ->editColumn('description', function ($row) {
                 $full = htmlspecialchars(strip_tags($row->description));
                 $short = mb_strlen($full) > 30 ? mb_substr($full, 0, 30) . '...' : $full;
                 return '<span data-bs-toggle="tooltip" data-bs-placement="top" title="' . $full . '">' . e($short) . '</span>';
@@ -61,7 +61,7 @@ class MagazineDataTable extends DataTable
         return [
             ['data' => 'id',          'title' => '#',             'className' => 'text-center'],
             ['data' => 'name',        'title' => 'Adı',           'className' => 'text-center'],
-            ['data' => 'description', 'title' => 'Açıklama',      'className' => 'text-center'],
+            ['data' => 'description',   'title' => 'Açıklama',      'orderable' => true, 'searchable' => true],
             ['data' => 'image',       'title' => 'Görsel',        'className' => 'text-center'],
             ['data' => 'order',       'title' => 'Sıra',          'className' => 'text-center'],
             ['data' => 'is_active',   'title' => 'Durum',         'className' => 'text-center'],
