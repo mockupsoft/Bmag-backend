@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EpisodeAdController;
 use App\Http\Controllers\Admin\EpisodeController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\MagazineController;
@@ -125,6 +126,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('{serieId}/{seasonId}/store', [EpisodeController::class, 'store'])->name('store');
         Route::get('{season}/edit', [EpisodeController::class, 'edit'])->name('edit');
         Route::post('{season}/update', [EpisodeController::class, 'update'])->name('update');
+    });
+
+    Route::group(['as' => 'episode-ad.', 'prefix' => 'episode-ad'], function () {
+        Route::get('index', [EpisodeAdController::class, 'index'])->name('index');
+        Route::get('create', [EpisodeAdController::class, 'create'])->name('create');
+        Route::post('store', [EpisodeAdController::class, 'store'])->name('store');
+        Route::get('{episodeAd}/edit', [EpisodeAdController::class, 'edit'])->name('edit');
+        Route::post('{episodeAd}/update', [EpisodeAdController::class, 'update'])->name('update');
     });
 });
 

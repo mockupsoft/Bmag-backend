@@ -1,17 +1,18 @@
 @extends('admin.parent')
 
 @section('sidebar')
-    @include('admin.sidebar', ['page' => 'magazine-issue'])
+    @include('admin.sidebar', ['page' => 'episode-ad'])
 @endsection
 
 @section('content')
     <style>
-        #magazine-issues-table td,
-        #magazine-issues-table th {
+        #episode-ads-table td,
+        #episode-ads-table th {
             text-align: center;
             vertical-align: middle;
         }
     </style>
+
     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
         <!--begin::Content wrapper-->
         <div class="d-flex flex-column flex-column-fluid">
@@ -22,7 +23,7 @@
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
-                        <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Dergi Sayıları</h1>
+                        <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">Reklamlar</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -37,7 +38,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">Dergi Sayıları</li>
+                            <li class="breadcrumb-item text-muted">Reklamlar</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -46,7 +47,7 @@
                     <!--begin::Actions-->
                     <div class="d-flex align-items-center gap-2 gap-lg-3">
                         <!--begin::Primary button-->
-                        <a href="{{ route('admin.magazine-issue.create', $magazine) }}" class="btn btn-sm fw-bold btn-primary">Dergiye Sayı Ekle</a>
+                        <a href="" class="btn btn-sm fw-bold btn-primary">Reklam Ekle</a>
                         <!--end::Primary button-->
                     </div>
                     <!--end::Actions-->
@@ -95,10 +96,4 @@
 
 @section('js')
     {!! $dataTable->scripts() !!}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const tooltips = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-            tooltips.forEach(t => new bootstrap.Tooltip(t));
-        });
-    </script>
 @endsection

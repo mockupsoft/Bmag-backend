@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\MagazineIssueDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MagazineIssueStoreRequest;
 use App\Http\Requests\Admin\MagazineIssueUpdateRequest;
@@ -14,10 +15,10 @@ class MagazineIssueController extends Controller
 {
     use Uploadable;
 
-    public function index(Magazine $magazine)
+    public function index(MagazineIssueDataTable $dataTable, Magazine $magazine)
     {
-        $magazineIssues = MagazineIssue::query()->where('magazine_id', $magazine->id)->orderBy('created_at', 'DESC')->get();
-        return view('admin.magazine-issue.index', compact('magazineIssues', 'magazine'));
+        $dataTable->magazine = $magazine;
+        return $dataTable->render('admin.magazine-issue.index', compact('magazine'));
     }
 
     public function create(Magazine $magazine)

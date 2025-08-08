@@ -53,62 +53,7 @@
                 <div id="kt_app_content_container" class="app-container container-xxl">
                     <!--begin::Products-->
                     <div class="card card-flush">
-                        <!--begin::Card body-->
-                        <div class="card-body pt-0">
-                            <!--begin::Table-->
-                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_products_table">
-                                <thead>
-                                <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                    <th class="w-10px pe-2">
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                            <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1" />
-                                        </div>
-                                    </th>
-                                    <th class="min-w-200px">Adı</th>
-                                    <th class="text-end min-w-70px">Eylemler</th>
-                                </tr>
-                                </thead>
-                                <tbody class="fw-semibold text-gray-600">
-                                @foreach($magazines as $magazine)
-                                    <tr>
-                                        <td>
-                                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="1" />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="text-gray-800 fs-5 fw-bold">{{ $magazine->name }}</span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Eylemler
-                                                <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                                            <!--begin::Menu-->
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.magazine-issue.index', $magazine) }}" class="menu-link px-3">Sayılar</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.roll.index', $magazine) }}" class="menu-link px-3">Roll</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('admin.magazine.edit', $magazine) }}" class="menu-link px-3">Düzenle</a>
-                                                </div>
-                                                <!--end::Menu item-->
-                                            </div>
-                                            <!--end::Menu-->
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                            <!--end::Table-->
-                        </div>
-                        <!--end::Card body-->
+                        {!! $dataTable->table(['class' => 'table table-bordered'], true) !!}
                     </div>
                     <!--end::Products-->
                 </div>
@@ -139,4 +84,14 @@
         </div>
         <!--end::Footer-->
     </div>
+@endsection
+
+@section('js')
+    {!! $dataTable->scripts() !!}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tooltips = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltips.forEach(t => new bootstrap.Tooltip(t));
+        });
+    </script>
 @endsection

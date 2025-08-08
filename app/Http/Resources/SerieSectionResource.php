@@ -16,7 +16,8 @@ class SerieSectionResource extends JsonResource
             'description'       => $this->description,
             'video_path'        => $this->video_path,
             'locked'            => $this->locked,
-            'watched_seconds'   => $this->watched_seconds
+            'watched_seconds'   => $this->watched_seconds,
+            'ads' => $this->ads
         ];
     }
 }

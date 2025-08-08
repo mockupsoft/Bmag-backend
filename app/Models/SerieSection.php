@@ -54,4 +54,24 @@ class SerieSection extends Model
         return $this->hasOne(EpisodeProgress::class, 'episode_id', 'id')
             ->where('user_id', Auth::id());
     }
+
+    public function ads()
+    {
+        return $this->hasMany(EpisodeAd::class, 'episode_id', 'id')->select([
+            'second',
+            'title',
+            'url',
+            'image',
+            'price',
+        ]);
+    }
+
+    public function getWatchedSecondsAttribute()
+    {
+        if (!Auth::check()) {
+            return 0;
+        }
+
+        return $this->userProgress ? $this->userProgress->watched_seconds : 0;
+    }
 }

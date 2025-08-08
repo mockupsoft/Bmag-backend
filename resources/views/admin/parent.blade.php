@@ -38,6 +38,8 @@ License: For each use you must have a valid license purchased only from above li
     <link href="{{ admin_asset('css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
     @yield('css')
     <!--end::Global Stylesheets Bundle-->
     <script>// Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }</script>
@@ -3435,6 +3437,7 @@ License: For each use you must have a valid license purchased only from above li
 <!--begin::Vendors Javascript(used for this page only)-->
 <script src="{{ admin_asset('plugins/custom/datatables/datatables.bundle.js') }}"></script>
 <script src="{{ admin_asset('plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
 <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
@@ -3455,6 +3458,10 @@ License: For each use you must have a valid license purchased only from above li
 <script src="{{ admin_asset('js/custom/utilities/modals/new-target.js') }}"></script>
 <script src="{{ admin_asset('js/custom/utilities/modals/users-search.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
 
 <script>
     $(document).ready(function() {

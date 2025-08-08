@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DataTables\MagazineDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MagazineStoreRequest;
 use App\Models\Magazine;
@@ -12,10 +13,9 @@ use Illuminate\Support\Facades\Storage;
 class MagazineController extends Controller
 {
     use Uploadable;
-    public function index()
+    public function index(MagazineDataTable $dataTable)
     {
-        $magazines = Magazine::all();
-        return view('admin.magazine.index', compact('magazines'));
+        return $dataTable->render('admin.magazine.index');
     }
 
     public function create()
